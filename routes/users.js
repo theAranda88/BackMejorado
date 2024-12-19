@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
         const { nombre, email, password, n_documento_identidad, sede, rol, n_ficha, jornada, nombre_del_programa } = req.body;
 
         // Verificar si la persona ya existe
-        const [existingPerson] = await pool.query('SELECT * FROM persona WHERE email = ? OR n_documento_identidad = ?', [email, n_documento_identidad]);
+        const [existingPerson] = await pool.query('SELECT * FROM persona WHERE email = ?', [email]);
         if (existingPerson.length > 0) {
             return res.status(400).json({ message: 'La persona ya está registrada' });
         }
