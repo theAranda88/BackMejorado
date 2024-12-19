@@ -11,7 +11,7 @@ const pool = mysql.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306, // Usar el puerto 3306 como predeterminado si no está definido
+    port: process.env.DB_PORT || 3305, // Usar el puerto 3306 como predeterminado si no está definido
 });
 
 // Probar la conexión inicial para asegurarse de que la base de datos está disponible
