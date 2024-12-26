@@ -4,6 +4,16 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db'); // Importa la conexión a la base de datos
 const router = express.Router();
+const {RegisterPersonaC, BuscarpersonaPorIdC, ListarPersonasC, Login, ListarUsuariosC, ListarIntructoresC} = require('../controllers/persona.controller')
+
+
+//endpoints con el patron models, services, controller a routes
+router.post('/registerMVC', RegisterPersonaC );
+router.get('/personaidMVC/:id', BuscarpersonaPorIdC);
+router.get('/listarpersonasMVC', ListarPersonasC );
+router.get('/listarusuariosMVC',  ListarUsuariosC);
+router.get('/listarinstructoresMVC',  ListarIntructoresC);
+router.post('/loginMVC', Login);
 
 // Registro de persona
 router.post('/register', async (req, res) => {
@@ -60,7 +70,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Error al registrar la persona' });
     }
 });
-
 
 // Login de usuario
 router.post('/login', async (req, res) => {
@@ -147,6 +156,8 @@ router.get('/instructores', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los usuarios' });
     }
 });
+
+
 
 
 module.exports = router;

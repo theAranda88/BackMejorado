@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const userRoutes = require('./routes/users');
+const personRoutes = require('./routes/persona.route');
 const cors = require('cors');
 
 const app = express();
@@ -10,7 +10,7 @@ app.use(express.json()); // Permite manejar datos JSON en las solicitudes
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api/users', userRoutes);
+app.use('/api/users', personRoutes);
 
 dotenv.config();
 //app.use(cors({ origin: 'http://192.168.100.7' }));  // Asegúrate de usar http:// si es una URL
