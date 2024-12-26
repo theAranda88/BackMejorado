@@ -37,7 +37,7 @@ const Persona = {
         return await pool.execute('SELECT * FROM Persona WHERE id_persona = ?',[id]);
     },
     findByEmail: async function (email) {
-        return await pool.execute('SELECT * FROM Persona WHERE email = ?', [email]);
+        return await pool.execute('SELECT * FROM persona WHERE email = ?', [email]);
     },
     editPersona: async function (id_persona, NuevaPersona) {
         try {
