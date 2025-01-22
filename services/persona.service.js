@@ -1,37 +1,45 @@
 const Persona = require('../models/persona.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const {listaNegraService } = require('../services/ListaNegra.service')
 require('dotenv').config();
 
-const Login = async function (email, password) {
-        const [personaResult] = await Persona.findByEmail(email);
-
-        if (personaResult.length === 0) {
-            throw new Error('Credenciales inválidas');
+const CrearToken =  async function (user){
+    const {id_persona, n_documento_identidad} = user;
+    const payload = {id_persona, n_documento_identidad};
+    console.log(payload);
+    const secret = process.env.JWT_SECRET;
+    const options = {expiresIn: '3m'};
+    const token = jwt.sign(payload, secret, options);//toma tres parámetros: el payload (información sobre el usuario), la clave secreta utilizada para firmar el token y las opciones de configuración del token.
+    return token
+}
+const LoginM = async function (req, res) {
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(400).json({ error: 'Credenciales necesarias' });
+        }
+        const [users] = await Persona.findByEmail(email);
+        if (users.length === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
         }
 
-        const user = personaResult[0];
-
-        // Verificar la contraseña
+        const user = users[0];
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            throw new Error('Credenciales inválidas');
+            return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-
-        // Generar un token JWT
-        const token = jwt.sign(
-            { id_persona: user.id_persona, email: user.email, rol: user.rol },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
-
-        return {
-            message: 'Login exitoso',
+        const token = await CrearToken(user);
+        return res.status(200).json({ 
+            message: 'Inicio de sesión exitoso', 
             token,
-            user: { id: user.id_persona, nombre: user.nombre, email: user.email, rol: user.rol },
-        };
-}
+            user: { id: user.id_persona, identificacion: user.identificacion } 
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error al iniciar sesión' });
+    }
+};
 const FindPersonsById = async function (id_persona) {
     try {
         const person = await Persona.findOnePersona(id_persona);
@@ -104,13 +112,21 @@ const RegisterPerson = async function (data) {
 
     return 'Persona registrada exitosamente';
 };
-
+const cerrarSesion = async (token) => {
+    try {
+      await listaNegraService.agregarToken(token);
+      return { message: 'Sesión cerrada exitosamente' };
+    } catch (error) {
+      throw error;
+    }
+  };
 module.exports = {
     FindPersonsById,
     FindAllPersons,
     RegisterPerson,
-    Login,
     FindAllUsuarios,
-    FindAllInstructores
+    FindAllInstructores,
+    LoginM,
+    cerrarSesion
 }
     

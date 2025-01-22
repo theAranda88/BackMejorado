@@ -1,23 +1,14 @@
-const {FindPersonsById, FindAllPersons, RegisterPerson, Login, FindAllUsuarios, FindAllInstructores} = require('../services/persona.service')
+const {FindPersonsById, FindAllPersons, RegisterPerson, FindAllUsuarios, FindAllInstructores, LoginM, cerrarSesion} = require('../services/persona.service')
 const validarCamposRequeridos = require('../middleware/camposRequeridos');
 const controller = {};
 
-controller.Login = async function (req, res) {
-    try {
-        // Validar los campos requeridos
-        validarCamposRequeridos(['email', 'password'])(req, res, async () => {
-            const { email, password } = req.body;
-
-            // Llamar al servicio para manejar la lógica del login
-            const response = await Login(email, password);
-
-            res.status(200).json(response);
-        });
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+controller.LoginC =  async function (req, res) {
+    try{
+        await LoginM(req, res);
+    }catch(error){
+        res.status(500)
     }
 }
-
 controller.ListarUsuariosC = async function (req, res) {
     try {
         const usuario = await FindAllUsuarios();
@@ -43,7 +34,6 @@ controller.ListarIntructoresC = async function(req, res) {
         res.status(500).json({ error: error.message  }); //Si hay un error, se devuelve un estado 500 con el mensaje de error.
     }
 }
-
 controller.BuscarpersonaPorIdC = async function(req, res) {
     try{
         const id_persona = req.params.id;
@@ -56,7 +46,6 @@ controller.BuscarpersonaPorIdC = async function(req, res) {
 
     }
 }
-
 controller.CrearPersonaC = async function(req, res) {
     try {
         // Validar los campos del usuario
@@ -73,7 +62,6 @@ controller.CrearPersonaC = async function(req, res) {
         res.status(500).json({ error: error.message });
     }    
 }
-
 controller.RegisterPersonaC = async function (req, res) {
     try {
         console.log('RegisterController');
@@ -104,6 +92,22 @@ controller.RegisterPersonaC = async function (req, res) {
         res.status(500).json({ error: error.message });
     }
 };
-
+controller.cerrarSesionC = async (req, res, next) => {
+    try {
+      const authorizationHeader = req.headers.authorization;
+      if (!authorizationHeader) {
+       return res.status(401).json({ status: 401, error: 'No se proporcionó un token de autenticación' });
+     }
+   
+      const token = req.headers['authorization']; 
+   
+      await cerrarSesion(token);
+   
+      res.status(200).json({message: 'Sesión cerrada exitosamente' });
+     } catch (error) {
+       next(error);
+     }
+   };
 
 module.exports = controller;
+

@@ -4,16 +4,17 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db'); // Importa la conexión a la base de datos
 const router = express.Router();
-const {RegisterPersonaC, BuscarpersonaPorIdC, ListarPersonasC, Login, ListarUsuariosC, ListarIntructoresC} = require('../controllers/persona.controller')
-
+const {RegisterPersonaC, BuscarpersonaPorIdC, ListarPersonasC, LoginC, ListarUsuariosC, ListarIntructoresC, cerrarSesionC} = require('../controllers/persona.controller')
+const validarTokenMiddleware = require('../middleware/VerificadorToken')
 
 //endpoints con el patron models, services, controller a routes
 router.post('/registerMVC', RegisterPersonaC );
 router.get('/personaidMVC/:id', BuscarpersonaPorIdC);
-router.get('/listarpersonasMVC', ListarPersonasC );
+router.get('/listarpersonasMVC', validarTokenMiddleware, ListarPersonasC );
 router.get('/listarusuariosMVC',  ListarUsuariosC);
 router.get('/listarinstructoresMVC',  ListarIntructoresC);
-router.post('/loginMVC', Login);
+router.post('/loginMVC', LoginC);
+router.post('/cerrarSecionMVC', cerrarSesionC);
 
 // Registro de persona
 router.post('/register', async (req, res) => {
