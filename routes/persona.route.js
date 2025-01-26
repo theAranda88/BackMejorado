@@ -6,8 +6,8 @@ const pool = require('../db'); // Importa la conexión a la base de datos
 const router = express.Router();
 const {RegisterPersonaC, BuscarpersonaPorIdC, ListarPersonasC, LoginC, ListarUsuariosC, ListarIntructoresC, cerrarSesionC} = require('../controllers/persona.controller')
 const validarTokenMiddleware = require('../middleware/VerificadorToken')
-
 //endpoints con el patron models, services, controller a routes
+//rutas de persona, usuario
 router.post('/registerMVC', RegisterPersonaC );
 router.get('/personaidMVC/:id', BuscarpersonaPorIdC);
 router.get('/listarpersonasMVC', validarTokenMiddleware, ListarPersonasC );
@@ -71,7 +71,6 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ message: 'Error al registrar la persona' });
     }
 });
-
 // Login de usuario
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -112,8 +111,6 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Error al iniciar sesión' });
     }
 });
-
-
 // Obtener lista de personas con roles
 router.get('/personas', async (req, res) => {
     console.log("GET RECIBIDO");
@@ -134,8 +131,6 @@ router.get('/personas', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener la lista de personas' });
     }
 });
-
-
 // Obtener todos los usuarios
 router.get('/usuarios', async (req, res) => {
     try {
@@ -146,7 +141,6 @@ router.get('/usuarios', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los usuarios' });
     }
 });
-
 // Obtener todos los usuarios
 router.get('/instructores', async (req, res) => {
     try {
@@ -157,8 +151,4 @@ router.get('/instructores', async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los usuarios' });
     }
 });
-
-
-
-
 module.exports = router;

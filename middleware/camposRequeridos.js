@@ -1,7 +1,7 @@
 
 
 function validarCamposRequeridos (camposRequeridos) {
-    return function (req, res, next) {
+    return function (req, res, next) {        
         const camposFaltantes = camposRequeridos.filter(campo => !req.body[campo]);
 
         if (camposFaltantes.length > 0) {

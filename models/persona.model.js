@@ -3,13 +3,24 @@ const pool = require('../db');
 const Persona = {
     findAllPer: async function() {
         console.log("GET AllPersonas");
-        return await pool.execute(`SELECT p.id_persona, p.nombre, p.email, p.n_documento_identidad, p.sede, r.nombre AS rol, 
-                    u.n_ficha AS usuario_ficha, u.jornada, u.nombre_del_programa AS usuario_programa, 
-                    ai.n_ficha AS instructor_ficha, ai.nombre_del_programa AS instructor_programa
-             FROM persona p
-             JOIN rol r ON p.id_rol = r.id_rol
-             LEFT JOIN usuario u ON p.id_persona = u.id_persona
-             LEFT JOIN administrador_instructor ai ON p.id_persona = ai.id_persona`);
+        return await pool.execute(`
+        SELECT 
+            p.id_persona,
+            p.nombre, 
+            p.email, 
+            p.n_documento_identidad, 
+            p.sede, 
+            r.nombre AS rol, 
+            u.n_ficha AS usuario_ficha, 
+            u.jornada, 
+            u.nombre_del_programa AS usuario_programa, 
+            ai.n_ficha AS instructor_ficha, 
+            ai.nombre_del_programa AS instructor_programa
+        FROM 
+            persona p
+            JOIN rol r ON p.id_rol = r.id_rol
+            LEFT JOIN usuario u ON p.id_persona = u.id_persona
+            LEFT JOIN administrador_instructor ai ON p.id_persona = ai.id_persona`);
     },
     findAllUsu: async function() {
         console.log("GET AllUsuarios");
@@ -28,7 +39,8 @@ const Persona = {
     },
     createUsuario: async function (id_persona, n_ficha, jornada, nombre_del_programa) {
         return await pool.query(
-            'INSERT INTO usuario (id_persona, n_ficha, jornada, nombre_del_programa) VALUES (?, ?, ?, ?)',
+            `INSERT INTO usuario (id_persona, n_ficha, jornada, nombre_del_programa)
+            VALUES (?, ?, ?, ?)`,
             [id_persona, n_ficha, jornada, nombre_del_programa]
         );
     },
@@ -41,8 +53,16 @@ const Persona = {
     },
     editPersona: async function (id_persona, NuevaPersona) {
         try {
-            const [result] = await pool.execute(
-                'UPDATE Persona SET nombre = ?, email = ?, password = ?, n_documento_identidad = ?, sede = ?, id_rol = ? WHERE id = ?',
+            const [result] = await pool.execute(`
+                UPDATE Persona SET 
+                    nombre = ?, 
+                    email = ?, 
+                    password = ?, 
+                    n_documento_identidad = ?, 
+                    sede = ?, 
+                    id_rol = ? 
+                WHERE 
+                    id_persona = ?`,
                 [NuevaPersona.nombre, NuevaPersona.email, NuevaPersona.password, NuevaPersona.n_documento_identidad, NuevaPersona.sede, NuevaPersona.id_rol, id_persona]
             );
             if (result.affectedRows === 0) {
@@ -61,7 +81,7 @@ const Persona = {
             }
             return { message: 'Persona elimnada existosamente' }
         } catch (error) {
-            
+            throw error
         }
     },
     createInstructor: async (id_persona, n_ficha, nombre_del_programa) => {
