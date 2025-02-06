@@ -1,4 +1,4 @@
-const {FindPersonsById, FindAllPersons, RegisterPerson, FindAllUsuarios, FindAllInstructores, LoginM, cerrarSesion} = require('../services/persona.service')
+const {FindPersonsById, FindAllPersons, RegisterPerson, FindAllUsuarios, FindAllInstructores, LoginM, cerrarSesion, EditarPersona, EliminarPersona} = require('../services/persona.service')
 const validarCamposRequeridos = require('../middleware/camposRequeridos');
 const controller = {};
 
@@ -88,6 +88,27 @@ controller.RegisterPersonaC = async function (req, res) {
                 res.status(201).json({ message });
             }
         });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+controller.EditarPersonaC = async function (req, res) {
+    try {
+        const id_persona = req.params.id; // Obtener el ID de la persona desde los parámetros de la URL
+        const nuevaPersona = req.body; // Obtener los datos actualizados desde el cuerpo de la solicitud
+
+        const result = await EditarPersona(id_persona, nuevaPersona);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+controller.EliminarPersonaC = async function (req, res) {
+    try {
+        const id_persona = req.params.id; // Obtener el ID de la persona desde los parámetros de la URL
+
+        const result = await EliminarPersona(id_persona);
+        res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

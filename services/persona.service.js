@@ -112,6 +112,22 @@ const RegisterPerson = async function (data) {
 
     return 'Persona registrada exitosamente';
 };
+const EditarPersona = async function (id_persona, nuevaPersona) {
+    try {
+        const result = await Persona.editPersona(id_persona, nuevaPersona);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+};
+const EliminarPersona = async function (id_persona) {
+    try {
+        const result = await Persona.deletePersona(id_persona);
+        return result;
+    } catch (error) {
+        throw error;
+    }
+};
 const cerrarSesion = async (token) => {
     try {
       await listaNegraService.agregarToken(token);
@@ -127,6 +143,8 @@ module.exports = {
     FindAllUsuarios,
     FindAllInstructores,
     LoginM,
-    cerrarSesion
+    cerrarSesion,
+    EditarPersona,
+    EliminarPersona
 }
     

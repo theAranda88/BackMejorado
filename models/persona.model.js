@@ -54,7 +54,7 @@ const Persona = {
     editPersona: async function (id_persona, NuevaPersona) {
         try {
             const [result] = await pool.execute(`
-                UPDATE Persona SET 
+                UPDATE persona SET 
                     nombre = ?, 
                     email = ?, 
                     password = ?, 
@@ -75,7 +75,7 @@ const Persona = {
     },
     deletePersona: async function (id_persona) {
         try {
-            const [result] = await pool.execute('DELETE FROM Persona WHERE id = ?', [id_persona]);
+            const [result] = await pool.execute('DELETE FROM persona WHERE id_persona = ?', [id_persona]);
             if (result.affectedRows === 0) {
                 throw new console.error('Persona no existe')
             }
