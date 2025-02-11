@@ -9,10 +9,10 @@ const validarTokenMiddleware = require('../middleware/VerificadorToken')
 //endpoints con el patron models, services, controller a routes
 //rutas de persona, usuario
 router.post('/registerMVC', RegisterPersonaC );
-router.get('/personaidMVC/:id', BuscarpersonaPorIdC);
+router.get('/personaidMVC/:id', validarTokenMiddleware, BuscarpersonaPorIdC);
 router.get('/listarpersonasMVC', validarTokenMiddleware, ListarPersonasC );
-router.get('/listarusuariosMVC',  ListarUsuariosC);
-router.get('/listarinstructoresMVC',  ListarIntructoresC);
+router.get('/listarusuariosMVC', validarTokenMiddleware, ListarUsuariosC);
+router.get('/listarinstructoresMVC', validarTokenMiddleware, ListarIntructoresC);
 router.post('/loginMVC', LoginC);
 router.post('/cerrarSecionMVC', cerrarSesionC);
 router.put('/:id', EditarPersonaC);

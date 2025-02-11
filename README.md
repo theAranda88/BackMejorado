@@ -296,6 +296,81 @@ El servidor estará disponible en `http://localhost:3000`.
     ``` 
 ---
 
+### Bitacoras
+- **GET /api/bitacora/**
+  - **Descripción**: Obtiene una lista de todos las bitacoras registradas.
+  - **Respuesta**:
+    ```json
+    [
+      {
+        "id_bitacora": 1,
+        "id_modulo": 1,
+        "fecha": "1003-10-15T04:56:16.000Z",
+        "descripcion": "Descripción MOdificada"
+      },
+    ]
+    ```
+
+- **POST /api/bitacora/**
+  - **Descripción**: Registra una nueva bitacora en el sistema.
+  - **Parámetros**:
+    ```json
+    {
+      "id_modulo": 1,
+      "fecha": "2025-10-15",
+      "descripcion": "Descripción de la entrada"
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+          "id_bitacora": 5,
+          "message": "Entrada de bitácora creada exitosamente"
+    }
+    ```
+
+- **GET /api/bitacora/:id**
+  - **Descripción**: Obtiene la bitacora registrada por medio de su id.
+  - **Respuesta**:
+    ```json
+    [
+      {
+        "id_bitacora": 1,
+        "id_modulo": 1,
+        "fecha": "1003-10-15T04:56:16.000Z",
+        "descripcion": "Descripción MOdificada"
+        }
+    ]
+    ```
+- **PUT /api/bitacora/:id**
+  - **Descripción**: Editar el recurso modulo por medio de su id.
+  - **Parámetros**:
+    ```json
+    {
+      "id_modulo": 1,
+      "fecha": "2025-10-15",
+      "descripcion": "Descripción editada"
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+      "message": "Entrada de bitácora actualizada exitosamente"
+    }
+    ```
+
+- **DELETE /api/bitacora/:id**
+  - **Descripción**: Editar el recurso por medio de su id.
+  - **Respuesta**:
+    ```json
+    [ 
+       {
+        "message": "Entrada de bitácora eliminada exitosamente"
+       }
+    ]
+    ``` 
+---
+
 ## 5. Configuración
 
 ### Archivos de Configuración

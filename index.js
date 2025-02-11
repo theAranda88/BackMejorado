@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const personRoutes = require('./routes/persona.route');
 const moduloRoutes = require('./routes/modulo.route');
+const bitacoraRoutes = require('../BackMejorado/routes/bitacora.route')
 const cors = require('cors');
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', personRoutes);
 app.use('/api/modulos', moduloRoutes);
+app.use('/api/bitacora', bitacoraRoutes);
 
 dotenv.config();
 //app.use(cors({ origin: 'http://192.168.100.7' }));  // Asegúrate de usar http:// si es una URL
