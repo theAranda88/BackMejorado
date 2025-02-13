@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 dotenv.config();
 
 app.use(cors({
-    origin: 'http://localhost:3001', // Origen permitido (tu frontend)
+    origin: ['http://localhost:3001', 'https://backmejorado.onrender.com'], // Origen permitido (tu frontend)
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
     credentials: true, // Permitir credenciales (ej: cookies, headers de autenticación)
