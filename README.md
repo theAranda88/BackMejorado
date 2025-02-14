@@ -57,6 +57,9 @@ El servidor estará disponible en `http://localhost:3000`.
 
 ## 4. Endpoints
 
+### URL en despliegue
+- **https://backmejorado.onrender.com**
+
 ### Autenticación
 - **POST /api/users/loginMVC**
   - **Descripción**: Inicia sesión con un correo electrónico y contraseña.
