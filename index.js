@@ -13,12 +13,12 @@ app.use(bodyParser.json());
 
 dotenv.config();
 
-app.use(cors({
-    origin: ['http://localhost:3001', 'https://backmejorado.onrender.com'], // Origen permitido (tu frontend)
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
-    credentials: true, // Permitir credenciales (ej: cookies, headers de autenticación)
-  }));//permite que cualquier origen acceda a los recursos de la aplicación
+// app.use(cors({
+//     origin: ['http://localhost:3001', 'https://backmejorado.onrender.com'], // Origen permitido (tu frontend)
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+//     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
+//     credentials: true, // Permitir credenciales (ej: cookies, headers de autenticación)
+//   }));//permite que cualquier origen acceda a los recursos de la aplicación
 
   // Manejar solicitudes OPTIONS
 app.options('*', cors()); // Habilita CORS para todas las rutas y métodos
