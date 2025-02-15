@@ -300,7 +300,7 @@ El servidor estará disponible en `http://localhost:3000`.
 ---
 
 ### Bitacoras
-- **GET /api/bitacora/**
+- **GET /api/bitacora/listarBitacora**
   - **Descripción**: Obtiene una lista de todos las bitacoras registradas.
   - **Respuesta**:
     ```json
@@ -314,7 +314,7 @@ El servidor estará disponible en `http://localhost:3000`.
     ]
     ```
 
-- **POST /api/bitacora/**
+- **POST /api/bitacora/registrar**
   - **Descripción**: Registra una nueva bitacora en el sistema.
   - **Parámetros**:
     ```json
@@ -332,7 +332,7 @@ El servidor estará disponible en `http://localhost:3000`.
     }
     ```
 
-- **GET /api/bitacora/:id**
+- **GET /api/bitacora/buscarPorId/:id**
   - **Descripción**: Obtiene la bitacora registrada por medio de su id.
   - **Respuesta**:
     ```json
@@ -345,7 +345,7 @@ El servidor estará disponible en `http://localhost:3000`.
         }
     ]
     ```
-- **PUT /api/bitacora/:id**
+- **PUT /api/bitacora/editar/:id**
   - **Descripción**: Editar el recurso modulo por medio de su id.
   - **Parámetros**:
     ```json
@@ -362,7 +362,7 @@ El servidor estará disponible en `http://localhost:3000`.
     }
     ```
 
-- **DELETE /api/bitacora/:id**
+- **DELETE /api/bitacora/borrar/:id**
   - **Descripción**: Editar el recurso por medio de su id.
   - **Respuesta**:
     ```json
