@@ -8,10 +8,10 @@ const {
     deleteBitacoraC,
 } = require('../controllers/bitacora.controller');
 
-router.get('/', findAllBitacorasC);
-router.get('/:id', findBitacoraByIdC);
-router.post('/', createBitacoraC);
-router.put('/:id', updateBitacoraC);
-router.delete('/:id', deleteBitacoraC);
+router.get('/listarBitacora', findAllBitacorasC);
+router.get('/buscarPorId/:id', findBitacoraByIdC);
+router.post('/registrar', createBitacoraC);
+router.put('/editar/:id', updateBitacoraC);
+router.delete('/borrar/:id', deleteBitacoraC);
 
 module.exports = router;
