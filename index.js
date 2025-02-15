@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const personRoutes = require('./routes/persona.route');
 const moduloRoutes = require('./routes/modulo.route');
-const bitacoraRoutes = require('../BackMejorado/routes/bitacora.route')
+const bitacoraRoutes = require('./routes/bitacora.route');
 const cors = require('cors');
 const app = express();
 
