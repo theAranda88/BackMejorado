@@ -22,7 +22,7 @@ controller.RegistrarModuloC = async function (req, res) {
         const insertId = await RegisterModulo(moduloData);
         res.status(201).json({ message: 'Módulo creado con éxito', id: insertId });
     } catch (error) {
-        res.status(500).json({error: error.message});
+        res.status(400).json({error: error.message});
     }
 }
 controller.BuscarModIdC = async function (req, res) {

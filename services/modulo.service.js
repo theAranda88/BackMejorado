@@ -20,8 +20,22 @@ const RegisterModulo = async function(data){
     if (!nombre || !ubicacion || !especie_pescados || !cantidad_pescados || !edad_pescados || !dimensiones || !id_persona) {
         throw new Error('Todos los campos obligatorios deben estar completos');
     }
-    const modulo = await Modulo.createModulo(nombre, ubicacion, especie_pescados, cantidad_pescados, edad_pescados, dimensiones, id_persona);
-    return `Modulo registrado exitosamente`,modulo;
+
+     // Crear el módulo y obtener el ID autogenerado
+     const newModuloId = await Modulo.createModulo(
+        nombre, 
+        ubicacion, 
+        especie_pescados, 
+        cantidad_pescados, 
+        edad_pescados, 
+        dimensiones, 
+        id_persona
+      );
+
+      // Crear el registro en modulo_usuario, pasando el ID recién creado
+    await Modulo.createModuloUsuario(newModuloId, id_persona);
+
+    return `Modulo registrado exitosamente con su ID: ${newModuloId}`;
     } catch (error) {
         throw error;
     }

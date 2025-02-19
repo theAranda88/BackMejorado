@@ -1,7 +1,7 @@
 # Backend de Gestión de Personas y Módulos - Documentación
 
 ## 1. Introducción
-Este proyecto es un sistema backend diseñado para gestionar personas y módulos en un entorno de acuicultura. Proporciona una API RESTful para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre personas y módulos, así como funcionalidades adicionales como autenticación y autorización.
+Este proyecto es un sistema backend diseñado para gestionar personas, módulos, bitacoras y umbrales en un entorno de acuicultura. Proporciona una API RESTful para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre estos mismos, así como funcionalidades adicionales como autenticación y autorización.
 
 ---
 
@@ -363,13 +363,100 @@ El servidor estará disponible en `http://localhost:3000`.
     ```
 
 - **DELETE /api/bitacora/borrar/:id**
-  - **Descripción**: Editar el recurso por medio de su id.
+  - **Descripción**: Eliminar el recurso por medio de su id.
   - **Respuesta**:
     ```json
     [ 
        {
         "message": "Entrada de bitácora eliminada exitosamente"
        }
+    ]
+    ``` 
+---
+
+### Umbral
+- **GET /api/umbral/**
+  - **Descripción**: Obtiene una lista de todos los Umbrales registrados.
+  - **Respuesta**:
+    ```json
+
+    {
+        "id_umbral": 1,
+        "id_sensor": 1,
+        "valor_min": "6.50",
+        "valor_max": "8.50"
+    },
+    {
+        "id_umbral": 2,
+        "id_sensor": 2,
+        "valor_min": "10.00",
+        "valor_max": "50.00"
+    },
+    {
+        "id_umbral": 3,
+        "id_sensor": 3,
+        "valor_min": "20.00",
+        "valor_max": "30.00"
+    }
+
+    ```
+
+- **POST /api/umbral/**
+  - **Descripción**: Registra una nuevo umbral en el sistema.
+  - **Parámetros**:
+    ```json
+    {
+      "id_sensor": "4",
+      "valor_min": 7.12,
+      "valor_max": 8.09
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+        "mensaje": "Umbral creado con exito",
+        "id_umbral": 11
+    }
+    ```
+
+- **GET /api/umbral/:id**
+  - **Descripción**: Obtiene el umbral registrado por medio de su id.
+  - **Respuesta**:
+    ```json
+    [
+      {
+          "id_umbral": 1,
+          "id_sensor": 1,
+          "valor_min": "6.50",
+          "valor_max": "8.50"
+      }
+    ]
+    ```
+- **PUT /api/umbral/:id**
+  - **Descripción**: Editar el recurso umbral por medio de su id.
+  - **Parámetros**:
+    ```json
+    {
+        "id_sensor": "4",
+        "valor_min": 7.12,
+        "valor_max": 8.09
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+        "mensaje": "Umbral actualizado exitosamente"
+    }
+    ```
+
+- **DELETE /api/umbral/:id**
+  - **Descripción**: Eliminar el recurso por medio de su id.
+  - **Respuesta**:
+    ```json
+    [ 
+      {
+          "mensaje": "Umbral eliminado exitosamente"
+      }
     ]
     ``` 
 ---

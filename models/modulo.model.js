@@ -30,6 +30,13 @@ const Modulo = {
 );
         return result.insertId;
     },
+    createModuloUsuario: async function(id_modulo, id_persona) {
+        const [result] = await pool.query(
+            `INSERT INTO modulo_usuario (id_modulo, id_persona) VALUES (?, ?)`, 
+            [id_modulo, id_persona]
+        );
+        return result.insertId;
+    },
     findOneMod: async function(id){
         return await pool.execute(`
         SELECT 
