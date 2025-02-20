@@ -1,7 +1,7 @@
 # Backend de Gestión de Personas y Módulos - Documentación
 
 ## 1. Introducción
-Este proyecto es un sistema backend diseñado para gestionar personas, módulos, bitacoras y umbrales en un entorno de acuicultura. Proporciona una API RESTful para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre estos mismos, así como funcionalidades adicionales como autenticación y autorización.
+Este proyecto es un sistema backend diseñado para gestionar personas, módulos, bitacoras, umbrales y sensores en un entorno de acuicultura. Proporciona una API RESTful para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre estos mismos, así como funcionalidades adicionales como autenticación y autorización.
 
 ---
 
@@ -11,6 +11,17 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
 - **Node.js**: v16 o superior.
 - **MySQL**: Base de datos para almacenar la información.
 - **npm**: Gestor de paquetes de Node.js.
+- **mysql2**: Paquete para interactuar con MySQL.
+- **express**: Framework web para crear la API.
+- **jsonwebtoken**: Paquete para generar y verificar tokens de autenticación.
+- **bcrypt**: Paquete para encriptar contraseñas.
+- **cors**: Paquete para habilitar CORS en la API.
+- **body-parser**: Paquete para parsear el cuerpo de las solicitudes HTTP.
+- **sequelize**: Paquete para interactuar con la base de datos de MySQL.
+- **sequelize-cli**: Paquete para crear y migrar la base de datos de MySQL.
+- **dotenv**: Paquete para leer variables de entorno desde un archivo .env.
+- **morgan**: Paquete pR visualizar los estados y las peticiones de las apis creadas.
+- **nodemon**: Paquete para crear y gener ara un servidor de desarrollo.
 
 ### Instrucciones de Instalación
 1. Clona el repositorio:
@@ -21,11 +32,20 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
 
 2. Instala las dependencias:
    ```bash
-   npm install
+   npm install mysql2 express jwt bcrypt cors body-parser sequelize sequelize-cli dotenv morgan nodemon
    ```
+   crecion de scrips en el package.json:
+   ```json
+      {
+            "scripts": {
+                  "start": "node index.js",
+                  "dev": "nodemon index.js"
+            }
+      }
+    ```
 
 3. Configura las variables de entorno:
-   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables de despliegue en cloud-clever:
    ```env
    DB_HOST=bsnvfs9rpxegu1v03g92-mysql.services.clever-cloud.com
    DB_USER=u8bocyog95qdluk0
@@ -456,6 +476,95 @@ El servidor estará disponible en `http://localhost:3000`.
     [ 
       {
           "mensaje": "Umbral eliminado exitosamente"
+      }
+    ]
+    ``` 
+---
+
+### Sensor
+- **GET /api/sensor/**
+  - **Descripción**: Obtiene una lista de todos los sensores registrados.
+  - **Respuesta**:
+    ```json
+
+    {
+        "id_sensor": 1,
+        "nombre": "Sensor de pH 1",
+        "tipo": "pH",
+        "id_hardware": 1
+    },
+    {
+        "id_sensor": 2,
+        "nombre": "Sensor de Caudal 1",
+        "tipo": "Caudal",
+        "id_hardware": 1
+    },
+    {
+        "id_sensor": 3,
+        "nombre": "Sensor de Temperatura 1",
+        "tipo": "Temperatura",
+        "id_hardware": 1
+    }
+
+    ```
+
+- **POST /api/sensor/**
+  - **Descripción**: Registra una nuevo sensor en el sistema.
+  - **Parámetros**:
+    ```json
+    {
+        "nombre": "Sensor de PH nuevo",
+        "tipo": "Analógico",
+        "id_hardware": 1
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+    "mensaje": "Sensor creado con exito",
+    "id_sensor": 10
+    }
+    ```
+
+- **GET /api/sensor/:id**
+  - **Descripción**: Obtiene el sensor registrado por medio de su id.
+  - **Respuesta**:
+    ```json
+    [
+      {
+          "id_sensor": 1,
+          "nombre": "Sensor de pH 1",
+          "tipo": "pH",
+          "id_hardware": 1
+      }
+    ]
+    ```
+- **PUT /api/sensor/:id**
+  - **Descripción**: Editar el recurso sensor por medio de su id.
+  - **Parámetros**:
+    ```json
+    {
+        "nombre": "Sensor de PH nuevomod",
+        "tipo": "Analógicomod",
+        "id_hardware": 1
+    }
+    ```
+  - **Respuesta**:
+    ```json
+    {
+           "mensaje": "Sensor actualizado con exito",
+           "id_sensor": 1
+    }
+    ```
+
+- **DELETE /api/sensor/:id**
+  - **Descripción**: Eliminar el recurso por medio de su id.
+  - **Respuesta**:
+    ```json
+    [ 
+      {
+          "mensaje": "sensor eliminado exitosamente",
+          "id_sensor": 1
       }
     ]
     ``` 

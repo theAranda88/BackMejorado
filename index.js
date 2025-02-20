@@ -5,6 +5,7 @@ const personRoutes = require('./routes/persona.route');
 const moduloRoutes = require('./routes/modulo.route');
 const bitacoraRoutes = require('./routes/bitacora.route');
 const umbralRoutes = require('./routes/umbral.route');
+const sensorRoutes = require('./routes/sensor.route');
 const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
@@ -30,6 +31,7 @@ app.use('/api/users', personRoutes);
 app.use('/api/modulos', moduloRoutes);
 app.use('/api/bitacora', bitacoraRoutes);
 app.use('/api/umbral', umbralRoutes);
+app.use('/api/sensor', sensorRoutes);
 
 const PORT = process.env.PORT || 3000;
 
