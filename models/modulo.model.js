@@ -49,13 +49,11 @@ const Modulo = {
             m.dimensiones, 
             m.id_persona AS id_persona_modulo,
             p.nombre AS nombre_persona_modulo,
-            mu.id_persona AS id_persona_asignada,
-            p2.nombre AS nombre_persona_asignada
+            mu.id_persona AS id_persona_asignada
         FROM 
             modulo m
             JOIN persona p ON m.id_persona = p.id_persona
             LEFT JOIN modulo_usuario mu ON m.id_modulo = mu.id_modulo
-            LEFT JOIN persona p2 ON mu.id_persona = p2.id_persona
         WHERE 
             m.id_modulo = ?`, [id]);
     },

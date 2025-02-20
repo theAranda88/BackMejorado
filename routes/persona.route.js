@@ -14,9 +14,9 @@ router.get('/listarpersonasMVC', validarTokenMiddleware, ListarPersonasC );
 router.get('/listarusuariosMVC', validarTokenMiddleware, ListarUsuariosC);
 router.get('/listarinstructoresMVC', validarTokenMiddleware, ListarIntructoresC);
 router.post('/loginMVC', LoginC);
-router.post('/cerrarSecionMVC', cerrarSesionC);
-router.put('/:id', EditarPersonaC);
-router.delete('/:id', EliminarPersonaC);
+router.post('/cerrarSecionMVC', validarTokenMiddleware, cerrarSesionC);
+router.put('/:id', validarTokenMiddleware, EditarPersonaC);
+router.delete('/:id', validarTokenMiddleware, EliminarPersonaC);
 
 // Registro de persona
 router.post('/register', async (req, res) => {
