@@ -2,25 +2,29 @@ const pool = require('../db');
 
 const Persona = {
     findAllPer: async function() {
-        console.log("GET AllPersonas");
-        return await pool.execute(`
-        SELECT 
-            p.id_persona,
-            p.nombre, 
-            p.email, 
-            p.n_documento_identidad, 
-            p.sede, 
-            r.nombre AS rol, 
-            u.n_ficha AS usuario_ficha, 
-            u.jornada, 
-            u.nombre_del_programa AS usuario_programa, 
-            ai.n_ficha AS instructor_ficha, 
-            ai.nombre_del_programa AS instructor_programa
-        FROM 
-            persona p
-            JOIN rol r ON p.id_rol = r.id_rol
-            LEFT JOIN usuario u ON p.id_persona = u.id_persona
-            LEFT JOIN administrador_instructor ai ON p.id_persona = ai.id_persona`);
+        try {
+            const [rows] = await pool.execute(`
+                SELECT 
+                    p.id_persona,
+                    p.nombre, 
+                    p.email, 
+                    p.n_documento_identidad, 
+                    p.sede, 
+                    r.nombre AS rol, 
+                    u.n_ficha AS usuario_ficha, 
+                    u.jornada, 
+                    u.nombre_del_programa AS usuario_programa, 
+                    ai.n_ficha AS instructor_ficha, 
+                    ai.nombre_del_programa AS instructor_programa
+                FROM 
+                    persona p
+                    JOIN rol r ON p.id_rol = r.id_rol
+                    LEFT JOIN usuario u ON p.id_persona = u.id_persona
+                    LEFT JOIN administrador_instructor ai ON p.id_persona = ai.id_persona`);
+                    return rows;
+        } catch (error) {
+            throw error;
+        }
     },
     findAllUsu: async function() {
         console.log("GET AllUsuarios");

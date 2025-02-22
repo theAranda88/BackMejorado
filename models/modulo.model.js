@@ -24,7 +24,7 @@ const Modulo = {
                     LEFT JOIN modulo_usuario mu ON m.id_modulo = mu.id_modulo
                     LEFT JOIN persona p2 ON mu.id_persona = p2.id_persona
             `);
-            return rows; // <-- Solo los datos, no los metadatos
+            return rows; 
         } catch (error) {
             throw error;
         }
