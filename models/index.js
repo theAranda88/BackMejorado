@@ -10,7 +10,7 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 
-// Cargar todos los modelos de la carpeta 'models' y establecer las conexiones a la base de datos.
+// Cargar todos los modelos de la carpeta 'models' y establecer las conexiones a la base de datos de raiway.
 // Cada archivo de modelo exporta una función que define un modelo de Sequelize.
 // Se cargan todos los modelos y se almacenan en el objeto 'db'.
 let sequelize;
@@ -20,8 +20,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
+fs.readdirSync(__dirname)
   .filter(file => {
     return (
       file.indexOf('.') !== 0 &&
@@ -41,53 +40,123 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+// Después de definir todos los modelos van las relacioens
+
+/******************************* RELACIONES *******************************/
+
+// 1. Rol - Persona
+db.Rol.hasMany(db.Persona, {
+  foreignKey: 'id_rol',
+  as: 'personas'
+});
+db.Persona.belongsTo(db.Rol, {
+  foreignKey: 'id_rol',
+  as: 'rol'
+});
+
+// 2. Persona - AdministradorInstructor (1:1)
+db.Persona.hasOne(db.AdministradorInstructor, {
+  foreignKey: 'id_persona',
+  as: 'instructor'
+});
+db.AdministradorInstructor.belongsTo(db.Persona, {
+  foreignKey: 'id_persona',
+  as: 'persona'
+});
+
+// 3. Persona - Usuario (1:1)
+db.Persona.hasOne(db.Usuario, {
+  foreignKey: 'id_persona',
+  as: 'usuario'
+});
+db.Usuario.belongsTo(db.Persona, {
+  foreignKey: 'id_persona',
+  as: 'persona'
+});
+
+// 4. Módulo - Hardware (1:N)
+db.Modulo.hasMany(db.Hardware, {
+  foreignKey: 'id_modulo',
+  as: 'hardwares'
+});
+db.Hardware.belongsTo(db.Modulo, {
+  foreignKey: 'id_modulo',
+  as: 'modulo'
+});
+
+// 5. Hardware - Sensor (1:N)
+db.Hardware.hasMany(db.Sensor, {
+  foreignKey: 'id_hardware',
+  as: 'sensores'
+});
+db.Sensor.belongsTo(db.Hardware, {
+  foreignKey: 'id_hardware',
+  as: 'hardware'
+});
+
+// 6. Sensor - Umbral (1:1)
+db.Sensor.hasOne(db.Umbral, {
+  foreignKey: 'id_sensor',
+  as: 'umbral'
+});
+db.Umbral.belongsTo(db.Sensor, {
+  foreignKey: 'id_sensor',
+  as: 'sensor'
+});
+
+// 7. Sensor - Parámetro (1:N)
+db.Sensor.hasMany(db.Parametro, {
+  foreignKey: 'id_sensor',
+  as: 'parametros'
+});
+db.Parametro.belongsTo(db.Sensor, {
+  foreignKey: 'id_sensor',
+  as: 'sensor'
+});
+
+// 8. Módulo - Bitácora (1:N)
+db.Modulo.hasMany(db.Bitacora, {
+  foreignKey: 'id_modulo',
+  as: 'bitacoras'
+});
+db.Bitacora.belongsTo(db.Modulo, {
+  foreignKey: 'id_modulo',
+  as: 'modulo'
+});
+
+// 9. Módulo - Notificación (1:N)
+db.Modulo.hasMany(db.Notificacion, {
+  foreignKey: 'id_modulo',
+  as: 'notificaciones'
+});
+db.Notificacion.belongsTo(db.Modulo, {
+  foreignKey: 'id_modulo',
+  as: 'modulo'
+});
+
+// 10. Módulo - Reporte (1:N)
+db.Modulo.hasMany(db.Reporte, {
+  foreignKey: 'id_modulo',
+  as: 'reportes'
+});
+db.Reporte.belongsTo(db.Modulo, {
+  foreignKey: 'id_modulo',
+  as: 'modulo'
+});
+
+// 11. Módulo - Usuario (N:M)
+db.Persona.belongsToMany(db.Modulo, {
+  through: 'ModuloUsuario',
+  foreignKey: 'id_persona',
+  as: 'modulos'
+});
+db.Modulo.belongsToMany(db.Persona, {
+  through: 'ModuloUsuario',
+  foreignKey: 'id_modulo',
+  as: 'usuarios'
+});
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
-// Después de definir todos los modelos
-
-// Rol - Persona
-Rol.hasMany(Persona, { foreignKey: 'id_rol' });
-Persona.belongsTo(Rol, { foreignKey: 'id_rol' });
-
-// Persona - AdministradorInstructor
-Persona.hasOne(AdministradorInstructor, { foreignKey: 'id_persona' });
-AdministradorInstructor.belongsTo(Persona, { foreignKey: 'id_persona' });
-
-// Persona - Usuario
-Persona.hasOne(Usuario, { foreignKey: 'id_persona' });
-Usuario.belongsTo(Persona, { foreignKey: 'id_persona' });
-
-// Modulo - Hardware
-Modulo.hasMany(Hardware, { foreignKey: 'id_modulo' });
-Hardware.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-// Hardware - Sensor
-Hardware.hasMany(Sensor, { foreignKey: 'id_hardware' });
-Sensor.belongsTo(Hardware, { foreignKey: 'id_hardware' });
-
-// Sensor - Umbral
-Sensor.hasOne(Umbral, { foreignKey: 'id_sensor' });
-Umbral.belongsTo(Sensor, { foreignKey: 'id_sensor' });
-
-// Sensor - Parametro
-Sensor.hasMany(Parametro, { foreignKey: 'id_sensor' });
-Parametro.belongsTo(Sensor, { foreignKey: 'id_sensor' });
-
-// Modulo - Bitacora
-Modulo.hasMany(Bitacora, { foreignKey: 'id_modulo' });
-Bitacora.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-// Modulo - Notificacion
-Modulo.hasMany(Notificacion, { foreignKey: 'id_modulo' });
-Notificacion.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-// Modulo - Reporte
-Modulo.hasMany(Reporte, { foreignKey: 'id_modulo' });
-Reporte.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-// Modulo - Usuario (Many-to-Many)
-Persona.belongsToMany(Modulo, { through: 'ModuloUsuario', foreignKey: 'id_persona' });
-Modulo.belongsToMany(Persona, { through: 'ModuloUsuario', foreignKey: 'id_modulo' });
 
 module.exports = db;
