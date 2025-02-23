@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+       // Relación con Módulo (N:1)
+       this.belongsTo(models.Modulo, {
+        foreignKey: 'id_modulo',   // Clave foránea en Bitacora
+        as: 'modulo'               // Alias para la relación
+      });
+
+      // Si la bitácora está asociada a un usuario (ej: quien la creó):
+      // this.belongsTo(models.Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
     }
   }
   Bitacora.init({

@@ -1,4 +1,4 @@
-const SensorModel = require('../models/sensor.model');
+const SensorModel = require('../models.sql/sensor.model');
 
 class SensorService {
 

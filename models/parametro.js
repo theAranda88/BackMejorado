@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+       // Relación con Sensor (N:1)
+       this.belongsTo(models.Sensor, {
+        foreignKey: 'id_sensor', // Clave foránea en Parametro
+        as: 'sensor' // Alias para la relación
+      });
+
+      // Si tienes más relaciones (ej: con Reporte o Notificación):
+      // this.belongsTo(models.Reporte, { foreignKey: 'id_reporte' });
     }
   }
   Parametro.init({

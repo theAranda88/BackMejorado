@@ -1,4 +1,4 @@
-const Modulo = require(`../models/modulo.model`);
+const Modulo = require(`../models.sql/modulo.model`);
 
 const FindAllMod = async function(){
     try {

@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Relación 1:1 con Persona
+      this.belongsTo(models.Persona, {
+        foreignKey: 'id_persona', // Clave foránea en AdministradorInstructor
+        as: 'persona' // Alias para la relación
+      });
     }
   }
   AdministradorInstructor.init({

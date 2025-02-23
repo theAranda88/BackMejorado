@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+       // Relación 1:1 con Sensor (Un umbral pertenece a un sensor)
+       this.belongsTo(models.Sensor, {
+        foreignKey: 'id_sensor', // Clave foránea en Umbral
+        as: 'sensor' // Alias para la relación
+      });
     }
   }
   Umbral.init({

@@ -11,6 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Relación con Módulo (N:1)
+      this.belongsTo(models.Modulo, {
+        foreignKey: 'id_modulo', // Clave foránea en Hardware
+        as: 'modulo' // Alias para la relación
+      });
+
+      // Relación con Sensor (1:N)
+      this.hasMany(models.Sensor, {
+        foreignKey: 'id_hardware', // Clave foránea en Sensor
+        as: 'sensores' // Alias para la relación
+      });
     }
   }
   Hardware.init({

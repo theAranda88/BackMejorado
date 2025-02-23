@@ -11,6 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Relación con Módulo (1 notificación pertenece a 1 módulo)
+      this.belongsTo(models.Modulo, {
+        foreignKey: 'id_modulo', // Clave foránea en Notificacion
+        as: 'modulo' // Alias para la relación
+      });
+
+      // Si la notificación está vinculada a un usuario (ej: quien la recibe):
+      // this.belongsTo(models.Usuario, {
+      //   foreignKey: 'id_usuario',
+      //   as: 'usuario'
+      // });
     }
   }
   Notificacion.init({

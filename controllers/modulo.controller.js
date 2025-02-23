@@ -1,7 +1,7 @@
 const { FindAllMod, RegisterModulo, FindModuloById, EditModulo, DeleteModulo}= require(`../services/modulo.service`)
 const controller = {};
 const validarCamposRequeridos = require(`../middleware/camposRequeridos`);
-const { editMod } = require("../models/modulo.model");
+const { editMod } = require("../models.sql/modulo.model");
 
 controller.ListarModulosC = async function (req, res) {
     try {

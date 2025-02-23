@@ -1,4 +1,4 @@
-const Persona = require('../models/persona.model');
+const Persona = require('../models.sql/persona.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {listaNegraService } = require('../services/ListaNegra.service')

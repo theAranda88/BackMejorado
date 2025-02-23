@@ -1,4 +1,4 @@
-const Bitacora = require('../models/bitacora.model');
+const Bitacora = require('../models.sql/bitacora.model');
 
 const findAllBitacoras = async function () {
     try {

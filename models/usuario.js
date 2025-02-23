@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Relación 1:1 con Persona
+      Usuario.belongsTo(models.Persona, {
+        foreignKey: 'id_persona', // Asegúrate de que este campo exista en la tabla
+        as: 'persona' // Alias para la relación
+      });
     }
   }
   Usuario.init({
@@ -20,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     id_persona: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Usuario',
+    modelName: 'Usuario'
   });
   return Usuario;
 };

@@ -11,6 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Relación con Módulo (1 Reporte pertenece a 1 Módulo)
+      this.belongsTo(models.Modulo, {
+        foreignKey: 'id_modulo', // Clave foránea en Reporte
+        as: 'modulo' // Alias para acceder desde consultas
+      });
+
+      // Si Reporte está relacionado con otros modelos (ej: Usuario), añade aquí:
+      // this.belongsTo(models.Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
     }
   }
   Reporte.init({

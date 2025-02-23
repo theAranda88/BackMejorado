@@ -6,6 +6,8 @@ const moduloRoutes = require('./routes/modulo.route');
 const bitacoraRoutes = require('./routes/bitacora.route');
 const umbralRoutes = require('./routes/umbral.route');
 const sensorRoutes = require('./routes/sensor.route');
+//const usuarioRoutes = require('./app/routes/usuario.route')
+const personaRoutes = require('./app/routes/persona.route');
 const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
@@ -13,7 +15,7 @@ const morgan = require('morgan');
 app.use(morgan('tiny')); // Muestra información de las solicitudes en la consola
 app.use(express.json()); // Permite manejar datos JSON en las solicitudes
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 dotenv.config();
 
@@ -27,6 +29,11 @@ app.use(cors({
   // Manejar solicitudes OPTIONS
 app.options('*', cors()); // Habilita CORS para todas las rutas y métodos
 
+//--------------Rutas con implementacion del orm sequelize-------------------------------
+//app.use('/api/usu', usuarioRoutes);
+app.use('/api/person', personaRoutes);
+
+//--------------Rutas con Cosnultas sql-------------------------------
 app.use('/api/users', personRoutes);
 app.use('/api/modulos', moduloRoutes);
 app.use('/api/bitacora', bitacoraRoutes);

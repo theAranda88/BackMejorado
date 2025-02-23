@@ -1,4 +1,4 @@
-const  UmbralModel  = require('../models/umbral.model');
+const  UmbralModel  = require('../models.sql/umbral.model');
 
 class UmbralService {
 

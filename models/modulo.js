@@ -11,7 +11,38 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+       // Relación con Hardware
+       this.hasMany(models.Hardware, {
+        foreignKey: 'id_modulo',
+        as: 'hardwares'
+      });
+
+      // Relación con Bitacora
+      this.hasMany(models.Bitacora, {
+        foreignKey: 'id_modulo',
+        as: 'bitacoras'
+      });
+
+      // Relación con Notificacion
+      this.hasMany(models.Notificacion, {
+        foreignKey: 'id_modulo',
+        as: 'notificaciones'
+      });
+
+      // Relación con Reporte
+      this.hasMany(models.Reporte, {
+        foreignKey: 'id_modulo',
+        as: 'reportes'
+      });
+
+      // Relación N:M con Persona
+      this.belongsToMany(models.Persona, {
+        through: 'ModuloUsuario',
+        foreignKey: 'id_modulo',
+        as: 'usuarios'
+      });
     }
+    
   }
   Modulo.init({
     nombre: DataTypes.STRING,
