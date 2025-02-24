@@ -8,6 +8,7 @@ const umbralRoutes = require('./routes/umbral.route');
 const sensorRoutes = require('./routes/sensor.route');
 //const usuarioRoutes = require('./app/routes/usuario.route')
 const personaRoutes = require('./app/routes/persona.route');
+const ListaNegraService = require('./app/services/ListaNegra')
 const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
@@ -47,3 +48,8 @@ app.listen(PORT, '0.0.0.0', () => { // '0.0.0.0' acepta conexiones de cualquier 
     console.log(`Servidor corriendo en http://192.168.100.7:${PORT}`);
 });
 
+// Vaciar la lista negra cada 1 hora
+setInterval(() => {
+  ListaNegraService.vaciarListaNegra()
+    .catch(error => console.error('Error al vaciar la lista negra:', error));
+}, 3600 * 1000); // 3600 segundos = 1 hora

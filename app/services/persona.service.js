@@ -2,6 +2,7 @@ const { Persona, Rol, Usuario, AdministradorInstructor, Admin } = require('../..
 const { Sequelize } = require('sequelize'); // Importar Sequelize
 const bcrypt = require('bcrypt');
 const CrearToken = require('../../middleware/CrearToken');
+const ListaNegraService = require('../services/ListaNegra');
 
 class PersonaService {
     static async login(req, res) {
@@ -10,7 +11,7 @@ class PersonaService {
             if (!email || !password) {
                 return res.status(400).json({ error: 'Credenciales necesarias' });
             }
-            const [user] = await Persona.findOne({ where: { email } });
+            const user = await Persona.findOne({ where: { email } });
             if (!user) {
                 return res.status(404).json({ error: 'Usuario no encontrado' });
             }
@@ -23,7 +24,7 @@ class PersonaService {
             return res.status(200).json({ 
                 message: 'Inicio de sesión exitoso', 
                 token,
-                user: { id: user.id_persona, identificacion: user.n_documento_identidad } 
+                user: { id: user.id, identificacion: user.n_documento_identidad } 
             });
         } catch (error) {
             console.error(error);
@@ -209,7 +210,7 @@ class PersonaService {
         } catch (error) {
             throw error;
         }
-        }
+    }
     
 }
 

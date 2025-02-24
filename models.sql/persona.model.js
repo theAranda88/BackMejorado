@@ -48,7 +48,6 @@ const Persona = {
             [id_persona, n_ficha, jornada, nombre_del_programa]
         );
     },
-    
     findOnePersona: async function (id) { 
         return await pool.execute('SELECT * FROM persona WHERE id_persona = ?',[id]);
     },

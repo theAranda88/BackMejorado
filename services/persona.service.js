@@ -23,7 +23,7 @@ const LoginM = async function (req, res) {
         if (users.length === 0) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
-
+        
         const user = users[0];
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
