@@ -220,7 +220,7 @@ El servidor estará disponible en `http://localhost:3000`.
 
 
 
-- **GET /api/users/personaidMVC/:id**
+- **GET /api/users/listarpersonasMVC/:id**
   - **Descripción**: Obtiene la persona registrada por medio de su id.
   - **Respuesta**:
     ```json

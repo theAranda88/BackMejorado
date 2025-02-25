@@ -23,17 +23,16 @@ const LoginM = async function (req, res) {
         if (users.length === 0) {
             return res.status(404).json({ error: 'Usuario no encontrado' });
         }
-        
-        const user = users[0];
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        const isPasswordValid = await bcrypt.compare(password, users.password);
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-        const token = await CrearToken(user);
+        const token = await CrearToken(users);
         return res.status(200).json({ 
             message: 'Inicio de sesión exitoso', 
             token,
-            user: { id: user.id_persona, identificacion: user.identificacion } 
+            user: { id: users.id, identificacion: users.identificacion } 
         });
     } catch (error) {
         console.error(error);
