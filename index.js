@@ -8,7 +8,7 @@ const umbralRoutes = require('./routes/umbral.route');
 const sensorRoutes = require('./routes/sensor.route');
 //const usuarioRoutes = require('./app/routes/usuario.route')
 const personaRoutes = require('./app/routes/persona.route');
-const ListaNegraService = require('./app/services/ListaNegra')
+const ListaNegraService = require('./app/services/ListaNegra');
 const cors = require('cors');
 const app = express();
 const morgan = require('morgan');
@@ -22,7 +22,7 @@ dotenv.config();
 
 app.use(cors({
     origin: ['http://localhost:3001', 'https://backmejorado.onrender.com', 'https://acuaterra-app.netlify.app'], // Origen permitido (tu frontend)
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Metodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
     credentials: true, // Permitir credenciales (ej: cookies, headers de autenticación)
   }));//permite que cualquier origen acceda a los recursos de la aplicación

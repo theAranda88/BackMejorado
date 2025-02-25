@@ -1,6 +1,4 @@
 const jwt = require('jsonwebtoken');
-const ListaNegraService = require('../app/services/ListaNegra');
-
 const CrearToken =  async function (user){
     const {id_persona, n_documento_identidad} = user;
     const payload = {id_persona, n_documento_identidad};

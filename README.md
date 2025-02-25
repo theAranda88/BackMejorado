@@ -56,7 +56,97 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
    PORT=3000
    ```
 
-4. Inicia el servidor:
+4. Inicia el orm de sequelize para comenzar hacer los modelos y migraciones a nuestra base de datos con despliegue en Raiway:
+   1. 
+    **`Inicilizando sequelize:`**
+   ```
+    npx sequelize-cli init
+   ```
+   2. 
+    **`Configurar archivo (config/config.json)`**
+   ```json
+      {
+        "development": {
+            "username": "root",
+            "password": "tVXHddJLzsNkrXwzYNSqntbwyQPgsIct",
+            "database": "railway",
+            "host": "nozomi.proxy.rlwy.net",
+            "dialect": "mysql",
+            "port": 35216 
+          }
+      }
+    ```
+    3. 
+    **`Generar modelos:`**
+    
+      - **Rol**: npx sequelize-cli model:generate --name Rol --attributes nombre:string
+      - **Persona**: npx sequelize-cli model:generate --name Persona --attributes nombre:string,email:string,password:string,     n_documento_identidad:string,sede:string,id_rol:integer
+      - **AdministradorInstuctor**: npx sequelize-cli model:generate --name AdministradorInstructor --attributes n_ficha:string,nombre_del_programa:string,id_persona:integer
+      - **Usuario**: npx sequelize-cli model:generate --name Usuario --attributes n_ficha:string,jornada:string,nombre_del_programa:string,id_persona:integer
+      - **Modulo**: npx sequelize-cli model:generate --name Modulo --attributes nombre:string,ubicacion:string,especie_pescados:string,cantidad_pescados:string,edad_pescados:string,dimensiones:string,id_persona:integer
+      - **Hardware**: npx sequelize-cli model:generate --name Hardware --attributes nombre:string,descripcion:text,id_modulo:integer
+      - **Sensor**: npx sequelize-cli model:generate --name Sensor --attributes nombre:string,tipo:string,id_hardware:integer
+      - **Umbral**: npx sequelize-cli model:generate --name Umbral --attributes valor_min:decimal,valor_max:decimal,id_sensor:integer
+      - **Bitacora**: npx sequelize-cli model:generate --name Bitacora --attributes fecha:dateonly,descripcion:text,id_modulo:integer
+      - **Notificacion**: npx sequelize-cli model:generate --name Notificacion --attributes tipo:string,mensaje:text,fecha_hora:date,id_modulo:integer
+      - **Reporte**: npx sequelize-cli model:generate --name Reporte --attributes fecha_inicio:dateonly,fecha_fin:dateonly,datos:json,id_modulo:integer
+      - **Paramtro**: npx sequelize-cli model:generate --name Parametro --attributes valor:decimal,fecha_hora:date,id_sensor:integer
+      - **modulo-usuario**: npx sequelize-cli migration:generate --name create-modulo-usuario-junction
+
+     4. 
+      **`Agregamos las relaciones entre modelos:`**
+    
+      **Rol - Persona**
+      Rol.hasMany(Persona, { foreignKey: 'id_rol' });
+      Persona.belongsTo(Rol, { foreignKey: 'id_rol' });
+
+      **Persona - AdministradorInstructor**
+      Persona.hasOne(AdministradorInstructor, { foreignKey: 'id_persona' });
+      AdministradorInstructor.belongsTo(Persona, { foreignKey: 'id_persona' });
+
+      **Persona - Usuario**
+      Persona.hasOne(Usuario, { foreignKey: 'id_persona' });
+      Usuario.belongsTo(Persona, { foreignKey: 'id_persona' });
+
+      **Modulo - Hardware**
+      Modulo.hasMany(Hardware, { foreignKey: 'id_modulo' });
+      Hardware.belongsTo(Modulo, { foreignKey: 'id_modulo' });
+
+      **Hardware - Sensor**
+      Hardware.hasMany(Sensor, { foreignKey: 'id_hardware' });
+      Sensor.belongsTo(Hardware, { foreignKey: 'id_hardware' });
+
+      **Sensor - Umbral**
+      Sensor.hasOne(Umbral, { foreignKey: 'id_sensor' });
+      Umbral.belongsTo(Sensor, { foreignKey: 'id_sensor' });
+
+      **Sensor - Parametro**
+      Sensor.hasMany(Parametro, { foreignKey: 'id_sensor' });
+      Parametro.belongsTo(Sensor, { foreignKey: 'id_sensor' });
+
+      **Modulo - Bitacora**
+      Modulo.hasMany(Bitacora, { foreignKey: 'id_modulo' });
+      Bitacora.belongsTo(Modulo, { foreignKey: 'id_modulo' });
+
+      **Modulo - Notificacion**
+      Modulo.hasMany(Notificacion, { foreignKey: 'id_modulo' });
+      Notificacion.belongsTo(Modulo, { foreignKey: 'id_modulo' });
+
+      **Modulo - Reporte**
+      Modulo.hasMany(Reporte, { foreignKey: 'id_modulo' });
+      Reporte.belongsTo(Modulo, { foreignKey: 'id_modulo' });
+
+      **Modulo - Usuario (Many-to-Many)**
+      Persona.belongsToMany(Modulo, { through: 'ModuloUsuario', foreignKey: 'id_persona' });
+      Modulo.belongsToMany(Persona, { through: 'ModuloUsuario', foreignKey: 'id_modulo' });
+
+    5. 
+     **`Ejecutamos la migracion:`**
+    ```
+     npx sequelize-cli db:migrate
+    ```
+
+5. **`Inicia el servidor:`**
    ```bash
    npm run dev
    ```
@@ -629,6 +719,13 @@ npm test
    git commit -m "Añade nueva funcionalidad"
    ```
 4. Envía un pull request.
+##  Datos Sequelize
+
+### 1. Tipos de Relaciones
+belongsTo	Asociación 1:1 (Llave foránea en origen)	Un Autor pertenece a un Libro
+hasOne	Asociación 1:1 (Llave foránea en destino)	Un Usuario tiene un Perfil
+hasMany	Asociación 1:N (Uno a muchos)	Un Usuario tiene muchos Posts
+belongsToMany	Asociación N:M (Muchos a muchos)	Productos pertenecen a muchas Órdenes (y viceversa)
 
 ---
 ## 10. Contacto

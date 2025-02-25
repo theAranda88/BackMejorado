@@ -28,11 +28,16 @@ const Persona = {
     },
     findAllUsu: async function() {
         console.log("GET AllUsuarios");
-        return await pool.execute(`SELECT * FROM usuario `);
+        try {
+        const [rows] = await pool.execute(`SELECT * FROM usuario `);
+        return rows;
+        } catch (error) {
+            throw error;
+        }
     },
     findAllInstru: async function() {
         console.log("GET AllInstructores");
-        return await pool.execute(`SELECT * FROM administrador_instructor `);
+        return await pool.execute(`SELECT * FROM administrador_instructor `);//pemdiente para confirma rl end point instructores
     },
     createPersona: async function (nombre, email, hashedPassword, n_documento_identidad, sede, rol) {
         const [result] = await pool.query(
@@ -49,10 +54,12 @@ const Persona = {
         );
     },
     findOnePersona: async function (id) { 
-        return await pool.execute('SELECT * FROM persona WHERE id_persona = ?',[id]);
+        const [rows] = await pool.execute('SELECT * FROM persona WHERE id_persona = ?',[id]);
+        return rows;
     },
     findByEmail: async function (email) {
-        return await pool.execute('SELECT * FROM persona WHERE email = ?', [email]);
+        const [rows] = await pool.execute('SELECT * FROM persona WHERE email = ?', [email]);
+        return rows;
     },
     editPersona: async function (id_persona, NuevaPersona) {
         try {

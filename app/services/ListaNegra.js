@@ -1,11 +1,9 @@
-const { ListaNegra } = require('../../models/listanegra');
-const persona = require('../../models/persona');
-const { Persona } = require('../../models/persona');
+const { Listanegra } = require('../../models');
 
 class ListaNegraService {
   static async agregarToken(token) {
     try {
-      const resultado = await ListaNegra.create( token );
+      const resultado = await Listanegra.create( {token} );
       return resultado;
     } catch (error) {
       throw new Error(`Error al agregar el token: ${error.message}`);
@@ -15,7 +13,8 @@ class ListaNegraService {
   static async tokenEnListaNegra(token) {
     try {
       console.log('Token utilizado en la consulta:', token);
-      const resultado = await ListaNegra.count({ where: { token } });
+      console.log(Listanegra);
+      const resultado = await Listanegra.count({ where: { token } });
       console.log(resultado);
       return resultado ;
        // Devuelve `true` si el token existe, `false` si no
@@ -26,7 +25,7 @@ class ListaNegraService {
 
   static async eliminarToken(token) {
     try {
-      const resultado = await ListaNegra.destroy({ where: { token } });
+      const resultado = await Listanegra.destroy({ where: { token } });
       return resultado;
     } catch (error) {
       throw new Error(`Error al eliminar el token: ${error.message}`);
@@ -35,7 +34,7 @@ class ListaNegraService {
 
   static async obtenerTodosLosTokens() {
     try {
-      const tokens = await ListaNegra.findAll({
+      const tokens = await Listanegra.findAll({
         attributes: ['token', 'created_at'],
       });
       return tokens;
@@ -46,7 +45,7 @@ class ListaNegraService {
 
   static async vaciarListaNegra() {
     try {
-      const resultado = await ListaNegra.destroy({ where: {}, truncate: true });
+      const resultado = await Listanegra.destroy({ where: {}, truncate: true });
       console.log('Lista negra vaciada exitosamente');
       return resultado;
     } catch (error) {

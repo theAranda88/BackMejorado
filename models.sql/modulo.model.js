@@ -44,7 +44,7 @@ const Modulo = {
         return result.insertId;
     },
     findOneMod: async function(id){
-        return await pool.execute(`
+        const [rows] = await pool.execute(`
         SELECT 
             m.id_modulo, 
             m.nombre, 
@@ -62,6 +62,7 @@ const Modulo = {
             LEFT JOIN modulo_usuario mu ON m.id_modulo = mu.id_modulo
         WHERE 
             m.id_modulo = ?`, [id]);
+            return rows[0];
     },
     deleteMod: async function(id){
         try {
@@ -97,9 +98,10 @@ const Modulo = {
         }
     },
     findByName: async function (nombre) {
-        return await pool.execute(`
+        const [rows] = await pool.execute(`
             SELECT * FROM modulo WHERE nombre = ?`,
             [nombre]);
+            return rows;
     }
 }
 

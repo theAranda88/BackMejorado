@@ -4,8 +4,6 @@ const ListaNegraService = require('../app/services/ListaNegra');
 
 class ValidarTokenMiddleware {
   static async validador(req, res, next) {
-    console.log("h");
-
     const token = req.headers.authorization;
 
     if (!token) {

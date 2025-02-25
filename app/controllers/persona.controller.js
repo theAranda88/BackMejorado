@@ -87,6 +87,22 @@ static async deletePersonaC(req, res) {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+    }
+
+static async logoutC(req, res, next) {
+    try {        
+        const authorizationHeader = req.headers.authorization;
+        if (!authorizationHeader) {
+            return res.status(401).json({status: 401, error: 'No se proporcionó un token de autenticación'})
+        }
+
+        const token = req.headers['authorization'];
+        await PersonaService.logout(token);
+
+        res.status(200).json({message: 'Sesión cerrada exitosamente'});
+    } catch (error) {
+        next(error);
+    }
 }
 
 }

@@ -1,7 +1,7 @@
 const { Persona, Rol, Usuario, AdministradorInstructor, Admin } = require('../../models');
 const { Sequelize } = require('sequelize'); // Importar Sequelize
 const bcrypt = require('bcrypt');
-const CrearToken = require('../../middleware/CrearToken');
+const MiddlewareCrearToken = require('../../middleware/CrearToken.Orm');
 const ListaNegraService = require('../services/ListaNegra');
 
 class PersonaService {
@@ -20,7 +20,7 @@ class PersonaService {
             if (!isPasswordValid) {
                 return res.status(401).json({ error: 'Contraseña incorrecta' });
             }
-            const token = await CrearToken(user);
+            const token = await MiddlewareCrearToken.CrearToken(user);
             return res.status(200).json({ 
                 message: 'Inicio de sesión exitoso', 
                 token,
@@ -211,7 +211,15 @@ class PersonaService {
             throw error;
         }
     }
-    
+
+    static async logout(token) {
+        try {
+            await ListaNegraService.agregarToken(token); 
+            return { message: 'Sesion cerrada exitosamente' }
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = PersonaService;
