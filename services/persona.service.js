@@ -78,7 +78,7 @@ const RegisterPerson = async function (data) {
     const { nombre, email, password, n_documento_identidad, sede, rol, n_ficha, jornada, nombre_del_programa } = data;
 
     // Verificar si la persona ya existe
-    const [existingPerson] = await Persona.findByEmail(email);
+    const existingPerson = await Persona.findByEmail(email);
     if (existingPerson.length > 0) {
         throw new Error('La persona ya está registrada');
     }
