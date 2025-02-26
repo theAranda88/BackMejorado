@@ -12,7 +12,7 @@ const RegisterModulo = async function(data){
     const {nombre, ubicacion, especie_pescados, cantidad_pescados, edad_pescados, dimensiones, id_persona} = data;
     try {
         //verificamos la existencia del modulo
-    const [existingMod] = await Modulo.findByName(nombre);
+    const existingMod = await Modulo.findByName(nombre);
     if (existingMod.length > 0) {
         throw new Error('El modulo ya existe');
     }
