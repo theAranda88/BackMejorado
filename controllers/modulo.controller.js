@@ -7,6 +7,8 @@ controller.ListarModulosC = async function (req, res) {
     try {
         const modulo = await FindAllMod();
         res.json(modulo);
+        console.log(modulo);
+        
     } catch (error) {
         res.status(500).json({error: error.message});
     }
