@@ -1,4 +1,5 @@
 const PersonaService = require('../services/persona.service');
+const ApiResponse = require('../utils/apiResponse')
 
 class PersonaController {
     static async loginC(req, res) {
@@ -16,19 +17,11 @@ class PersonaController {
         }
     }
  
-    static async getAllPersonasC(req, res) {
-        try {
-            const result = await PersonaService.getAllPersonas();
-            res.json(result);
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
-    }
-
     static async registerC(req, res) {
         try {
             const result = await PersonaService.register(req.body);
-            res.json({ message: result });
+            const results = ApiResponse.createApiResponse('Successfully registered person', result);
+            res.json(results);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -37,7 +30,8 @@ class PersonaController {
     static async findPersonByIdC(req, res) {
         try {
             const result = await PersonaService.findPersonById(req.params.id);
-            res.json(result);
+            const results = ApiResponse.createApiResponse('Person found', result);
+            res.json(results);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -46,8 +40,10 @@ class PersonaController {
     static async findAllPersonsC(req, res) {
         try {
             const result = await PersonaService.getAllPersonas();
-            res.json(result);
+            const response = ApiResponse.createApiResponse("Users successfully obtained", result)
+            res.json(response);
         } catch (error) {
+            
             res.status(500).json({ error: error.message });
         }
     }
@@ -55,7 +51,8 @@ class PersonaController {
     static async findAllUsuariosC(req, res) {
         try {
             const result = await PersonaService.findAllUsuarios();
-            res.json(result);
+            const response = ApiResponse.createApiResponse("Users successfully obtained", result)
+            res.json(response);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -64,7 +61,8 @@ class PersonaController {
     static async findAllInstructoresC(req, res) {
         try {
             const result = await PersonaService.findAllInstructores();
-            res.json(result);
+            const response = ApiResponse.createApiResponse("Instructores successfully obtained", result)
+            res.json(response);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -73,8 +71,8 @@ class PersonaController {
     static async updatePersonaC(req, res) {
         try {
             const result = await PersonaService.editPersona(req.params.id, req.body);
-            res.json(result);
-            
+            const response = ApiResponse.createApiResponse("Persona updated successfully", result)
+            res.json(response);
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -83,7 +81,8 @@ class PersonaController {
 static async deletePersonaC(req, res) {
     try {
         const result = await PersonaService.deletePersona(req.params.id);
-        res.json(result);
+        const response = ApiResponse.createApiResponse("Persona deleted successfully", result)
+        res.json(response);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -98,8 +97,8 @@ static async logoutC(req, res, next) {
 
         const token = req.headers['authorization'];
         await PersonaService.logout(token);
-
-        res.status(200).json({message: 'Sesión cerrada exitosamente'});
+        const response = ApiResponse.createApiResponse('Session closed successfully', token)
+        res.status(200).json(response);
     } catch (error) {
         next(error);
     }

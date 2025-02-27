@@ -3,6 +3,7 @@ const { Sequelize } = require('sequelize'); // Importar Sequelize
 const bcrypt = require('bcrypt');
 const MiddlewareCrearToken = require('../../middleware/CrearToken.Orm');
 const ListaNegraService = require('../services/ListaNegra');
+const ApiResponse = require('../utils/apiResponse');
 
 class PersonaService {
     static async login(req, res) {
@@ -21,11 +22,16 @@ class PersonaService {
                 return res.status(401).json({ error: 'Contraseña incorrecta' });
             }
             const token = await MiddlewareCrearToken.CrearToken(user);
-            return res.status(200).json({ 
-                message: 'Inicio de sesión exitoso', 
+            const results = ApiResponse.createApiResponse('Successful login', { 
                 token,
                 user: { id: user.id, identificacion: user.n_documento_identidad } 
-            });
+            } )
+            // return res.status(200).json({ 
+            //     message: 'Inicio de sesión exitoso', 
+            //     token,
+            //     user: { id: user.id, identificacion: user.n_documento_identidad } 
+            // });
+            return res.status(200).json(results);
         } catch (error) {
             console.error(error);
             return res.status(500).json({ error: 'Error al iniciar sesión' });
@@ -113,7 +119,7 @@ class PersonaService {
                 if (!n_ficha || !jornada || !nombre_del_programa) {
                     throw new Error('Datos adicionales necesarios para usuarios: n_ficha, jornada, nombre_del_programa');
                 }
-                await Usuario.create({
+                const usuario = await Usuario.create({
                     n_ficha,
                     jornada,
                     nombre_del_programa,
@@ -123,7 +129,7 @@ class PersonaService {
                 if (!n_ficha || !nombre_del_programa) {
                     throw new Error('Datos adicionales necesarios para instructores: n_ficha, nombre_del_programa');
                 }
-                await AdministradorInstructor.create({
+                const instructor =await AdministradorInstructor.create({
                     id_persona,
                     n_ficha,
                     nombre_del_programa
@@ -141,7 +147,7 @@ class PersonaService {
                 throw new Error('Rol no válido');
             }
 
-            return 'Persona registrada exitosamente';
+            return persona  ;
         } catch (error) {
             throw new Error(`Error al crear persona: ${error.message}`);
         }
@@ -193,7 +199,7 @@ class PersonaService {
                 throw new Error('No se encontró la persona.');
             }
             await persona.update(nuevaPersona);
-            return 'Persona editada exitosamente';
+            return persona;
         } catch (error) {
             throw error;
         }
@@ -206,7 +212,7 @@ class PersonaService {
                 throw new Error('No se encontró la persona.');
             }
             await Persona.destroy({ where: { id } });
-            return 'Persona eliminada exitosamente';
+            return persona;
         } catch (error) {
             throw error;
         }
@@ -214,8 +220,9 @@ class PersonaService {
 
     static async logout(token) {
         try {
-            await ListaNegraService.agregarToken(token); 
-            return { message: 'Sesion cerrada exitosamente' }
+            await ListaNegraService.agregarToken(token);
+            const result =  { message: 'Sesion cerrada exitosamente' };
+            return result;
         } catch (error) {
             throw error;
         }
