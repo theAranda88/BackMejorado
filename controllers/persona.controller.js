@@ -64,7 +64,6 @@ controller.CrearPersonaC = async function(req, res) {
 }
 controller.RegisterPersonaC = async function (req, res) {
     try {
-        console.log('RegisterController');
         // Validar los campos requeridos
         validarCamposRequeridos(['nombre', 'email', 'password', 'n_documento_identidad', 'sede', 'rol'])(req, res, async () => {
             const personaData = req.body;
