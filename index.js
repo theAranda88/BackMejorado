@@ -32,10 +32,10 @@ app.options('*', cors()); // Habilita CORS para todas las rutas y métodos
 
 //--------------Rutas con implementacion del orm sequelize-------------------------------
 //app.use('/api/usu', usuarioRoutes);
-app.use('/api/person', personaRoutes);
+app.use('/api/v2/users', personaRoutes);
 
 //--------------Rutas con Cosnultas sql-------------------------------
-app.use('/api/users', personRoutes);
+app.use('/api/users', personRoutes); 
 app.use('/api/modulos', moduloRoutes);
 app.use('/api/bitacora', bitacoraRoutes);
 app.use('/api/umbral', umbralRoutes);
