@@ -2,7 +2,7 @@ class ApiResponse {
     static createApiResponse(message, data) {
       return {
         message,
-        data: Array.isArray(data) ? data : [data] // El item data es un array de datos que pueden ser objetos, valores primitivos, arrays, etc.
+        data: Array.isArray(data) ? data : [data] // The item data is an array of data that can be objects, primitive values, arrays, etc.
       };
     }
   }
