@@ -12,6 +12,4 @@ router.put('/:id',VerificadorToken.validador, PersonaController.updatePersonaC);
 router.delete('/:id', VerificadorToken.validador,PersonaController.deletePersonaC); //probado
 router.post('/logout', VerificadorToken.validador, PersonaController.logoutC); //probado
 
-
-
 module.exports = router;
