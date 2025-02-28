@@ -6,8 +6,8 @@ class PersonaController {
         try {
             const result = await PersonaService.login(req, res);
             if (res.headersSent) {
-                return; //Si se han enviado encabezados, se sale de la función sin intentar enviar la respuesta JSON. 
-            }           //De esta manera, se evita el error de encabezados HTTP enviados.
+                return; 
+            }           
             res.json(result);
         } catch (error) {
             if (res.headersSent) {
