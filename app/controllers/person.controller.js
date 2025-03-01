@@ -1,19 +1,34 @@
-const PersonaService = require('../services/persona.service');
+const PersonaService = require('../services/person.service');
 const ApiResponse = require('../utils/apiResponse')
+const {Persona} = require("../../models");
 
-class PersonaController {
+
+class PersonController {
     static async loginC(req, res) {
+
         try {
-            const result = await PersonaService.login(req, res);
-            if (res.headersSent) {
-                return; 
-            }           
-            res.json(result);
-        } catch (error) {
-            if (res.headersSent) {
-                return;
+            // TODO: implement here express validator
+            const { email, password } = req.body;
+
+            const user = await Persona.findOne({ where: { email } });
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
             }
-            res.status(500).json({ error: error.message });
+
+            const person = new PersonaService();
+            const token = await person.login(password, user);
+
+            const result = ApiResponse.createApiResponse('Successful login', {
+                token,
+                user: { id: user.id, identification: user.n_documento_identidad }
+            } )
+
+            res.json(result);
+
+        } catch (error) {
+
+            res.status(400).json({ error: error.message });
+
         }
     }
  
@@ -105,4 +120,4 @@ static async logoutC(req, res, next) {
 
 }
 
-module.exports = PersonaController;
+module.exports = PersonController;
