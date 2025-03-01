@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const dotenv = require('dotenv');
+dotenv.config();
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
@@ -10,13 +12,14 @@ const base = require(__dirname + '/../config/config.json')[env];
 const mysql2 = require('mysql2')
 const db = {};
 
+
 const config = {
-  username: "root",
-  password: "tVXHddJLzsNkrXwzYNSqntbwyQPgsIct",
-  database: "railway",
-  host: "nozomi.proxy.rlwy.net",
+  username: process.env.ORM_DB_USER,
+  password: process.env.ORM_DB_PASSWORD,
+  database: process.env.ORM_DB_NAME,
+  host: process.env.ORM_DB_HOST,
   dialect: "mysql",
-  port: 35216,
+  port: process.env.ORM_PORT,
   dialectModule: mysql2,
 }
 
