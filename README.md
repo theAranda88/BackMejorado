@@ -203,7 +203,7 @@ El servidor estará disponible en `http://localhost:3000`.
         "sede": "Sede Principal",
         "rol": "Usuario"
       }
-    ]
+    
     ```   
 
 - **POST /api/users/registerMVC**
@@ -390,7 +390,7 @@ El servidor estará disponible en `http://localhost:3000`.
         "id_modulo": 1,
         "fecha": "1003-10-15T04:56:16.000Z",
         "descripcion": "Descripción MOdificada"
-      },
+      }
     ]
     ```
 
@@ -465,13 +465,13 @@ El servidor estará disponible en `http://localhost:3000`.
         "id_sensor": 1,
         "valor_min": "6.50",
         "valor_max": "8.50"
-    },
+    }
     {
         "id_umbral": 2,
         "id_sensor": 2,
         "valor_min": "10.00",
         "valor_max": "50.00"
-    },
+    }
     {
         "id_umbral": 3,
         "id_sensor": 3,
@@ -552,7 +552,7 @@ El servidor estará disponible en `http://localhost:3000`.
         "nombre": "Sensor de pH 1",
         "tipo": "pH",
         "id_hardware": 1
-    },
+    }
     {
         "id_sensor": 2,
         "nombre": "Sensor de Caudal 1",
