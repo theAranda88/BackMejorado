@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
 const MiddlewareCrearToken = require('../../middleware/CrearToken.Orm');
 const ListaNegraService = require('../services/ListaNegra');
-const ApiResponse = require('../utils/apiResponse');
 
 class PersonService {
 
