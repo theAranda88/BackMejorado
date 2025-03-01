@@ -9,6 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 const base = require(__dirname + '/../config/config.json')[env];
 const mysql2 = require('mysql2')
 const db = {};
+
 const config = {
   username: "root",
   password: "tVXHddJLzsNkrXwzYNSqntbwyQPgsIct",

@@ -4,7 +4,7 @@ const {Persona} = require("../../models");
 
 
 class PersonController {
-    static async loginC(req, res) {
+    /*static async loginC(req, res) {
 
         try {
             const { email, password } = req.body;
@@ -29,7 +29,7 @@ class PersonController {
             res.status(400).json({ error: error.message });
 
         }
-    }
+    }*/
  
     static async registerC(req, res) {
         try {
@@ -101,8 +101,8 @@ static async deletePersonaC(req, res) {
     }
     }
 
-static async logoutC(req, res, next) {
-    try {        
+/*static async logoutC(req, res, next) {
+    try {
         const authorizationHeader = req.headers.authorization;
         if (!authorizationHeader) {
             return res.status(401).json({status: 401, error: 'No se proporcionó un token de autenticación'})
@@ -116,6 +116,7 @@ static async logoutC(req, res, next) {
         next(error);
     }
 }
+ */
 
 }
 
