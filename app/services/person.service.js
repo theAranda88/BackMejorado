@@ -3,34 +3,19 @@ const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
 const MiddlewareCrearToken = require('../../middleware/CrearToken.Orm');
 const ListaNegraService = require('../services/ListaNegra');
-const ApiResponse = require('../utils/apiResponse');
 
-class PersonaService {
-    static async login(req, res) {
-        try {
-            const { email, password } = req.body;
-            if (!email || !password) {
-                return res.status(400).json({ error: 'Credentials required' });
-            }
-            const user = await Persona.findOne({ where: { email } });
-            if (!user) {
-                return res.status(404).json({ error: 'User not found' });
-            }
+class PersonService {
+
+     async login(password, user) {
 
             const isPasswordValid = await bcrypt.compare(password, user.password);
+
             if (!isPasswordValid) {
-                return res.status(401).json({ error: 'Incorrect password' });
+                throw Error(`Password not match`);
             }
-            const token = await MiddlewareCrearToken.CrearToken(user);
-            const results = ApiResponse.createApiResponse('Successful login', { 
-                token,
-                user: { id: user.id, identificacion: user.n_documento_identidad } 
-            } )
-            return res.status(200).json(results);
-        } catch (error) {
-            console.error(error);
-            return res.status(500).json({ error: 'Login error' });
-        }
+
+            return await MiddlewareCrearToken.CrearToken(user);
+
     }
 
     static async getAllPersonas() {
@@ -218,5 +203,5 @@ class PersonaService {
     }
 }
 
-module.exports = PersonaService;
+module.exports = PersonService;
 
