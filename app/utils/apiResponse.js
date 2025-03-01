@@ -1,8 +1,9 @@
 class ApiResponse {
-    static createApiResponse(message, data) {
+    static createApiResponse(message, data = [], errors = []) {
       return {
-        message,
-        data: Array.isArray(data) ? data : [data] // The item data is an array of data that can be objects, primitive values, arrays, etc.
+        message: message,
+        data: data,
+        errors: errors,
       };
     }
   }
