@@ -13,7 +13,7 @@ module.exports = {
       {
         name: faker.person.fullName(),
         email: 'admin@example.com',
-        password: await bcrypt.hash('admin123', saltRounds),
+        password: await bcrypt.hash('password', saltRounds),
         dni: faker.string.numeric(10),
         id_rol: 1, // Admin role
         createdAt: new Date(),
@@ -21,19 +21,28 @@ module.exports = {
       },
       {
         name: faker.person.fullName(),
-        email: 'user@example.com',
-        password: await bcrypt.hash('user123', saltRounds),
+        email: 'owner_1@example.com',
+        password: await bcrypt.hash('password', saltRounds),
         dni: faker.string.numeric(10),
-        id_rol: 2, // User role
+        id_rol: 2, // Owner
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: faker.person.fullName(),
-        email: 'guest@example.com',
-        password: await bcrypt.hash('guest123', saltRounds),
+        email: 'owner_2@example.com',
+        password: await bcrypt.hash('password', saltRounds),
         dni: faker.string.numeric(10),
-        id_rol: 3, // Guest role
+        id_rol: 2, // Owner
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: faker.person.fullName(),
+        email: 'user@example.com',
+        password: await bcrypt.hash('password', saltRounds),
+        dni: faker.string.numeric(10),
+        id_rol: 3, // User Role
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -47,7 +56,7 @@ module.exports = {
     // Remove all seeded users with correct table name (lowercase)
     return await queryInterface.bulkDelete('users', {
       email: {
-        [Sequelize.Op.in]: ['admin@example.com', 'user@example.com', 'guest@example.com']
+        [Sequelize.Op.in]: ['admin@example.com', 'owner_1@example.com', 'owner_2@example.com', 'user@example.com']
       }
     }, {});
   }
