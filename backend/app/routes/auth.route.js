@@ -7,10 +7,21 @@ const AuthController = require("../controllers/auth.controller");
 const ValidateTokenMiddleware = require("../middleware/validateToken.middleware");
 const TokenGeneratorService = require("../utils/tokenGenerator.service");
 const BlackListService = require("../services/blacklist.service");
+const AuthService = require("../services/auth.service");
 
-const authController = new AuthController(new BlackListService(), new TokenGeneratorService());
 
-router.post('/login', validate(validateUserLogin), (req, res) => authController.login(req, res));
-router.post('/logout', ValidateTokenMiddleware.validate, (req, res) => authController.logout(req, res));
+const authService = new AuthService(new BlackListService(), new TokenGeneratorService());
+const authController = new AuthController(authService);
+
+const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService());
+
+router.post('/login',
+    validate(validateUserLogin),
+    (req, res) => authController.login(req, res)
+);
+router.post('/logout',
+    validateTokenMiddleware.validate.bind(validateTokenMiddleware),
+    (req, res) => authController.logout(req, res)
+);
 
 module.exports = router;
