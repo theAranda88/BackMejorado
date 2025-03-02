@@ -1,0 +1,27 @@
+
+{
+  "development": {
+    "username": "database-acuaterra-orm",
+    "password": "acuaterra",
+    "database": "acuaterra_db",
+    "host": "database-acuaterra",
+    "dialect": "mysql",
+    "port": 3306
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "",
+    "port": 0
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "",
+    "port": 0
+  }
+}
