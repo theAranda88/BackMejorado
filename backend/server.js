@@ -5,16 +5,13 @@ const BlackListService = require('./app/services/blacklist.service');
 const cors = require('cors');
 const morgan = require('morgan');
 // Import the new ray module
-const { ray, setupRay } = require('./ray');
 
 // Initialize express app
 const app = express();
 
 // Set up Ray with express
-setupRay(app);
 
 app.get('/', (req, res) => {
-    ray('sending "hello world" response');
     res.send('Acuaterra Backend service running OK!');
 });
 /**
