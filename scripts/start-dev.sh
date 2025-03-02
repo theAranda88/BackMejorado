@@ -28,9 +28,6 @@ cd ..
 
 cd scripts
 
-# Para database-acuaterra
-#docker exec -i database-acuaterra mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS acuaterra_db; GRANT ALL PRIVILEGES ON acuaterra_db.* TO 'acuaterra'@'%'; FLUSH PRIVILEGES;"
-
 CONTAINER_NAME="database-acuaterra"
 MAX_ATTEMPTS=60
 DELAY_SECONDS=5
@@ -57,6 +54,7 @@ fi
 echo "Ejecutando tu script ahora que MySQL está listo..."
 
 docker exec -w /app backend-acuaterra npx sequelize-cli db:migrate --env docker
+docker exec -w /app backend-acuaterra npx sequelize-cli db:seed:all --env docker
 
 
 
