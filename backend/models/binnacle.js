@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'Binnacle',
-      tableName: 'binnacle',
+      tableName: 'binnacles',
       timestamps: true,
     }
   );

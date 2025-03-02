@@ -1,3 +1,0 @@
-CREATE DATABASE IF NOT EXISTS acuaterra_db;
-GRANT ALL PRIVILEGES ON acuaterra_db.* TO 'acuaterra'@'%';
-FLUSH PRIVILEGES;

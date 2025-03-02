@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: 'Threshold',
-      tableName: 'threshold',
+      tableName: 'thresholds',
       timestamps: true
     }
   );

@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Rol',
-    tableName: 'rol',
+    tableName: 'roles',
     timestamps: true // Assuming the table doesn't have createdAt and updatedAt fields
   });
   
