@@ -1,8 +1,16 @@
 const bcrypt = require("bcrypt");
-const MiddlewareCrearToken = require("../../middleware/CrearToken.Orm");
-const ListaNegraService = require("./ListaNegra");
 
 class AuthService {
+
+    /**
+     * @param {BlackListService} blackListService
+     * @param {TokenGeneratorService} tokenGenerator
+     */
+    constructor(blackListService, tokenGenerator) {
+        this.blackListService = blackListService;
+        this.tokenGenerator = tokenGenerator;
+    }
+
     async login(password, user) {
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -11,15 +19,13 @@ class AuthService {
             throw Error(`Password not match`);
         }
 
-        return await MiddlewareCrearToken.CrearToken(user);
+        return await this.tokenGenerator.generateToken(user);
 
     }
 
-    static async logout(token) {
+    async logout(token) {
         try {
-            await ListaNegraService.agregarToken(token);
-            const result =  { message: 'Session closed successfully' };
-            return result;
+            await this.blackListService.addToken(token);
         } catch (error) {
             throw error;
         }

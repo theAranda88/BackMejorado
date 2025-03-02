@@ -25,7 +25,6 @@ let sequelize;
 sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 
-// Cargar modelos
 fs.readdirSync(__dirname)
     .filter(file => {
         return (
@@ -37,22 +36,21 @@ fs.readdirSync(__dirname)
     })
     .forEach(file => {
         try {
-            console.log("Cargando modelo:", file); // 👀 Identifica el archivo
             const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
             db[model.name] = model;
         } catch (error) {
-            console.error(">>> Error en el archivo:", file); // Mostrará el modelo con error
+            console.error(">>> Error in the file:", file);
             throw error;
         }
     });
 
-// Ejecutar associate si existe
 Object.keys(db).forEach(modelName => {
     if (db[modelName].associate) {
         db[modelName].associate(db);
     }
 });
 
+db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
