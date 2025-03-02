@@ -15,11 +15,13 @@ const authController = new AuthController(authService);
 
 const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService());
 
-router.post('/login',
+router.post(
+    '/login',
     validate(validateUserLogin),
     (req, res) => authController.login(req, res)
 );
-router.post('/logout',
+router.post(
+    '/logout',
     validateTokenMiddleware.validate.bind(validateTokenMiddleware),
     (req, res) => authController.logout(req, res)
 );

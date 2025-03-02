@@ -1,5 +1,4 @@
 const {User} = require("../../models");
-const AuthService = require("../services/auth.service");
 const ApiResponse = require("../utils/apiResponse");
 
 class AuthController {
