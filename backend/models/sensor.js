@@ -48,7 +48,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Sensor',
-    tableName: 'sensor',
+    tableName: 'sensors',
     timestamps: true
   });
 

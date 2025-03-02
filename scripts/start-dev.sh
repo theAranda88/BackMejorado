@@ -56,9 +56,7 @@ fi
 
 echo "Ejecutando tu script ahora que MySQL está listo..."
 
-docker exec -i database-acuaterra mysql -uroot -ppassword < permission.sql
-
-docker exec -i database-acuaterra mysql -uacuaterra -pacuaterra acuaterra_db < create-tables.sql
+docker exec -w /app backend-acuaterra npx sequelize-cli db:migrate --env docker
 
 
 

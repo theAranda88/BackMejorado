@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Notification',
-    tableName: 'notification',
+    tableName: 'notifications',
     timestamps: true
   });
   

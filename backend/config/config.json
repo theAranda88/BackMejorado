@@ -1,7 +1,15 @@
 
 {
   "development": {
-    "username": "database-acuaterra-orm",
+    "username": "acuaterra",
+    "password": "acuaterra",
+    "database": "acuaterra_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": 33066
+  },
+  "docker": {
+    "username": "acuaterra",
     "password": "acuaterra",
     "database": "acuaterra_db",
     "host": "database-acuaterra",

@@ -70,7 +70,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'User',
-    tableName: 'user',
+    tableName: 'users',
     timestamps: true // Assuming the table doesn't have createdAt and updatedAt fields
   });
 
