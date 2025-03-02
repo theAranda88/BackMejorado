@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f63baca-95e8-4b0e-bd7b-670bccf7fa37" name="Changes" comment="" />
+    <list default="true" id="5f63baca-95e8-4b0e-bd7b-670bccf7fa37" name="Changes" comment="fix rebase problem">
+      <change beforePath="$PROJECT_DIR$/backend/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/backend/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +18,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/backend" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2tjV8SxKD5DeeMiUYVq76dlWomo" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -31,13 +33,14 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "<unknown>",
+    "git-widget-placeholder": "Rebasing feature/aq-25-dokerize-app",
     "last_opened_file_path": "/Users/philipretl/sites/sena/BackMejorado",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/PhpStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -51,6 +54,9 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/app/services" />
+      <recent name="$PROJECT_DIR$/backend/app/routes" />
+      <recent name="$PROJECT_DIR$/backend/app/controllers" />
       <recent name="$PROJECT_DIR$/backend" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -71,11 +77,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1740865310142</updated>
-      <workItem from="1740865311134" duration="12987000" />
+      <workItem from="1740865311134" duration="13511000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add migrations and configure migrations with new structure" />
+    <MESSAGE value="fix rebase problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix rebase problem" />
   </component>
 </project>

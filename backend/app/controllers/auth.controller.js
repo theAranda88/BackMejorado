@@ -1,4 +1,4 @@
-const {Persona} = require("../../models");
+const {User} = require("../../../models");
 const AuthService = require("../services/auth.service");
 const ApiResponse = require("../utils/apiResponse");
 
@@ -6,11 +6,11 @@ class AuthController {
     static async loginC(req, res) {
 
         try {
-            const { email, password } = req.body;
+            const {email, password} = req.body;
 
-            const user = await Persona.findOne({ where: { email } });
+            const user = await User.findOne({where: {email}});
             if (!user) {
-                return res.status(404).json({ error: 'User not found' });
+                return res.status(404).json({error: 'User not found'});
             }
 
             const auth = new AuthService();
@@ -18,14 +18,14 @@ class AuthController {
 
             const result = ApiResponse.createApiResponse('Successful login', {
                 token,
-                user: { id: user.id, identification: user.n_documento_identidad }
-            } )
+                user: {id: user.id, identification: user.n_documento_identidad}
+            })
 
             res.json(result);
 
         } catch (error) {
 
-            res.status(400).json({ error: error.message });
+            res.status(400).json({error: error.message});
 
         }
     }
