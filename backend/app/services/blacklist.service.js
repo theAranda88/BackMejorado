@@ -11,7 +11,7 @@ class BlackListService {
 
     async cleanBlackList() {
         try {
-         const result =  await Blacklist.destroy({ where: {} });
+        await Blacklist.destroy({ where: {} });
         } catch (error) {
             console.error('Error al vaciar la tabla listaNegra:', error.message);
             throw error;
@@ -21,7 +21,6 @@ class BlackListService {
     async isTokenInBlackList(token) {
         try {
             return await Blacklist.findOne({where: {token}});
-
         } catch (error) {
             throw error;
         }
