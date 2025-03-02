@@ -6,18 +6,6 @@ const ListaNegraService = require('../services/ListaNegra');
 
 class PersonService {
 
-     async login(password, user) {
-
-            const isPasswordValid = await bcrypt.compare(password, user.password);
-
-            if (!isPasswordValid) {
-                throw Error(`Password not match`);
-            }
-
-            return await MiddlewareCrearToken.CrearToken(user);
-
-    }
-
     static async getAllPersonas() {
         try {
             const people = await Persona.findAll({
@@ -192,15 +180,6 @@ class PersonService {
         }
     }
 
-    static async logout(token) {
-        try {
-            await ListaNegraService.agregarToken(token);
-            const result =  { message: 'Session closed successfully' };
-            return result;
-        } catch (error) {
-            throw error;
-        }
-    }
 }
 
 module.exports = PersonService;
