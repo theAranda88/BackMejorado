@@ -1,7 +1,7 @@
 const Persona = require('../models.sql_bck/persona.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {listaNegraService } = require('../services/ListaNegra.service')
+const {blackListService } = require('../app/services/blacklist.service')
 require('dotenv').config();
 
 const CrearToken =  async function (user){
@@ -129,7 +129,7 @@ const EliminarPersona = async function (id_persona) {
 };
 const cerrarSesion = async (token) => {
     try {
-      await listaNegraService.agregarToken(token);
+      await blackListService.addToken(token);
       return { message: 'Sesión cerrada exitosamente' };
     } catch (error) {
       throw error;
