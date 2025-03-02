@@ -6,11 +6,10 @@ class AuthController {
 
     /**
      *
-     * @param {BlackListService} blackListService
-     * @param {TokenGeneratorService} tokenGenerator
+     * @param {AuthService} authService
      */
-    constructor(blackListService, tokenGenerator) {
-        this.authService = new AuthService(blackListService, tokenGenerator);
+    constructor(authService) {
+        this.authService = authService;
     }
 
     async login(req, res) {
@@ -52,7 +51,9 @@ class AuthController {
             const response = ApiResponse.createApiResponse('Session closed')
             return res.status(200).json(response);
         } catch (error) {
-            res.status(400).json({error: error.message});
+            res.status(400).json(ApiResponse.createApiResponse('Logout failed', [], [{
+                'error' :error.message
+            }]));
         }
     }
 }
