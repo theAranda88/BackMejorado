@@ -4,6 +4,8 @@ const FarmService = require("../services/farm.services");
 const FarmController = require("../controllers/farm.controller");
 const ValidateTokenMiddleware = require("../middleware/validateToken.middleware");
 const BlackListService = require("../services/blacklist.service");
+const { validate } = require("../middleware/validate.middleware");
+const { validateFarmCreation } = require("../validators/farm.validator");
 
 const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService());
 const farmService = new FarmService();
