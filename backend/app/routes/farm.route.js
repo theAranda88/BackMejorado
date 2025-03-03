@@ -9,6 +9,15 @@ const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService
 const farmService = new FarmService();
 const farmController = new FarmController(farmService);
 
+//Create a new farm
+router.post(
+    '/',
+    validateTokenMiddleware.validate.bind(validateTokenMiddleware),
+    validate(validateFarmCreation),
+    (req, res) => farmController.create(req, res)
+);
+
+//Get all farms
 router.get(
     '/',
     validateTokenMiddleware.validate.bind(validateTokenMiddleware),
@@ -16,3 +25,4 @@ router.get(
 );
 
 module.exports = router;
+
