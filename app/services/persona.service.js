@@ -26,11 +26,6 @@ class PersonaService {
                 token,
                 user: { id: user.id, identificacion: user.n_documento_identidad } 
             } )
-            // return res.status(200).json({ 
-            //     message: 'Inicio de sesión exitoso', 
-            //     token,
-            //     user: { id: user.id, identificacion: user.n_documento_identidad } 
-            // });
             return res.status(200).json(results);
         } catch (error) {
             console.error(error);
@@ -40,7 +35,7 @@ class PersonaService {
 
     static async getAllPersonas() {
         try {
-            const personas = await Persona.findAll({
+            const people = await Persona.findAll({
                 attributes: [
                     'id',
                     'nombre',
@@ -77,15 +72,15 @@ class PersonaService {
                 //raw: true
             });
 
-            return personas;
+            return people;
         } catch (error) {
             throw new Error(`Error al obtener personas: ${error.message}`);
         }
     }
 
-    static async register(personaData) {
+    static async register(personData) {
         try {
-            const { nombre, email, password, n_documento_identidad, sede, id_rol, n_ficha, jornada, nombre_del_programa } = personaData;
+            const { nombre, email, password, n_documento_identidad, sede, id_rol, n_ficha, jornada, nombre_del_programa } = personData;
 
             // Verificar si la persona ya existe
             const existingPerson = await Persona.findOne({ where: { email } });
@@ -102,7 +97,7 @@ class PersonaService {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Crear persona base
-            const persona = await Persona.create({
+            const person = await Persona.create({
                 nombre,
                 email,
                 password: hashedPassword,
@@ -111,8 +106,8 @@ class PersonaService {
                 id_rol
             });
 
-            // Obtener el id de la persona
-            const id_persona = persona.id;
+            // Obtener el id de la person
+            const id_persona = person.id;
 
             // Insertar en tabla correspondiente según el id_rol
             if (id_rol === 3) {
@@ -129,7 +124,7 @@ class PersonaService {
                 if (!n_ficha || !nombre_del_programa) {
                     throw new Error('Datos adicionales necesarios para instructores: n_ficha, nombre_del_programa');
                 }
-                const instructor =await AdministradorInstructor.create({
+                const instructor = await AdministradorInstructor.create({
                     id_persona,
                     n_ficha,
                     nombre_del_programa
@@ -147,7 +142,7 @@ class PersonaService {
                 throw new Error('Rol no válido');
             }
 
-            return persona  ;
+            return person ;
         } catch (error) {
             throw new Error(`Error al crear persona: ${error.message}`);
         }
@@ -176,8 +171,8 @@ class PersonaService {
 
     static async findAllUsuarios() {
         try {
-            const usuarios = await Usuario.findAll();
-            return usuarios;
+            const users = await Usuario.findAll();
+            return users;
         } catch (error) {
             throw error;
         }
@@ -185,8 +180,8 @@ class PersonaService {
 
     static async findAllInstructores() {
         try {
-            const instructores = await AdministradorInstructor.findAll();
-            return instructores;
+            const owner = await AdministradorInstructor.findAll();
+            return owner;
         } catch (error) {
             throw error;
         }
@@ -194,12 +189,12 @@ class PersonaService {
 
     static async editPersona(id_persona, nuevaPersona) {
         try {
-            const persona = await Persona.findByPk(id_persona)
-            if (!persona) {
+            const person = await Persona.findByPk(id_persona)
+            if (!person) {
                 throw new Error('No se encontró la persona.');
             }
-            await persona.update(nuevaPersona);
-            return persona;
+            await person.update(nuevaPersona);
+            return person;
         } catch (error) {
             throw error;
         }
@@ -207,12 +202,12 @@ class PersonaService {
 
     static async deletePersona(id) {
         try {
-            const persona = await Persona.findByPk(id);
-            if (!persona) {
+            const person = await Persona.findByPk(id);
+            if (!person) {
                 throw new Error('No se encontró la persona.');
             }
             await Persona.destroy({ where: { id } });
-            return persona;
+            return person;
         } catch (error) {
             throw error;
         }
@@ -221,7 +216,7 @@ class PersonaService {
     static async logout(token) {
         try {
             await ListaNegraService.agregarToken(token);
-            const result =  { message: 'Sesion cerrada exitosamente' };
+            const result =  { message: 'Session closed successfully' };
             return result;
         } catch (error) {
             throw error;
