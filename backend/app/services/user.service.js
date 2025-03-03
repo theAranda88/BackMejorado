@@ -56,14 +56,18 @@ class UserService {
                 address,
             });
 
-            // Enviar correo con la contraseña generada
-            const subject = 'Registro Exitoso - Credenciales de Acceso';
+            const resetPasswordUrl = `${process.env.FRONTEND_URL}/reset-password?userId=${user.id}`;
+            const subject = 'Registro Exitoso - Credenciales de Acceso - Configura tu contraseña';
             const htmlContent = `
                 <h2>¡Bienvenido, ${name}!</h2>
                 <p>Tu cuenta ha sido creada exitosamente. Aquí están tus credenciales:</p>
                 <p><strong>Email:</strong> ${email}</p>
                 <p><strong>Contraseña temporal:</strong> ${tempPassword}</p>
                 <p>Por favor, cambia tu contraseña después de iniciar sesión.</p>
+                <p>Puedes cambiar tu contraseña haciendo clic en el siguiente enlace:</p>
+                <p><a href="${resetPasswordUrl}" style="background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Actualizar Contraseña</a></p>
+                <p>Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
+                <p>${resetPasswordUrl}</p>
             `;
 
             await this.mailer.sendEmail(email, subject, htmlContent, process.env.RESEND_FROM_EMAIL);
