@@ -1,8 +1,12 @@
 const { User, Rol } = require('../../models');
 const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
+const Mailer = require('../utils/Mailer')
 
 class UserService {
+    constructor() {
+        this.mailer = new Mailer(process.env.RESEND_API_KEY);
+    }
 
     static async getAllUsers() {
         try {
@@ -51,6 +55,18 @@ class UserService {
                 id_rol,
                 address,
             });
+
+            // Enviar correo con la contraseña generada
+            const subject = 'Registro Exitoso - Credenciales de Acceso';
+            const htmlContent = `
+                <h2>¡Bienvenido, ${name}!</h2>
+                <p>Tu cuenta ha sido creada exitosamente. Aquí están tus credenciales:</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Contraseña temporal:</strong> ${tempPassword}</p>
+                <p>Por favor, cambia tu contraseña después de iniciar sesión.</p>
+            `;
+
+            await this.mailer.sendEmail(email, subject, htmlContent, process.env.RESEND_FROM_EMAIL);
 
             const { password, ...userWithoutPassword } = user.dataValues;
             return userWithoutPassword;
