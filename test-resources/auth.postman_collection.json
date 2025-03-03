@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e3b8e4ba-dd42-48c3-af2e-83999394cb9a",
-		"name": "new_backend_acuaterra_postman",
+		"name": "auth",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13906554"
 	},
@@ -95,71 +95,6 @@
 										"v2",
 										"auth",
 										"logout"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "farms",
-					"item": [
-						{
-							"name": "list",
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{server}}/api/v2/farms",
-									"host": [
-										"{{server}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"farms"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "create",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Authorization",
-										"value": "{{token}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "\n    {\n     \"name\": \"Nombre de la granja\",\n     \"address\": \"Dirección de la granja\",\n     \"latitude\": \"12.345678\",\n     \"longitude\": \"-12.345678\",\n     \"users\": [2, 3, 3] \n   }\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{server}}/api/v2/farms/",
-									"host": [
-										"{{server}}"
-									],
-									"path": [
-										"api",
-										"v2",
-										"farms",
-										""
 									]
 								}
 							},
