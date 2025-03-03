@@ -7,6 +7,7 @@ class PersonController {
     static async loginC(req, res) {
 
         try {
+            // TODO: implement here express validator
             const { email, password } = req.body;
 
             const user = await Persona.findOne({ where: { email } });
