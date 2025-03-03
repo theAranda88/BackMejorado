@@ -1,5 +1,5 @@
 const { Persona, Rol, Usuario, AdministradorInstructor, Admin } = require('../../models');
-const { Sequelize } = require('sequelize'); // Importar Sequelize
+const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
 const MiddlewareCrearToken = require('../../middleware/CrearToken.Orm');
 const ListaNegraService = require('../services/ListaNegra');
@@ -10,16 +10,16 @@ class PersonaService {
         try {
             const { email, password } = req.body;
             if (!email || !password) {
-                return res.status(400).json({ error: 'Credenciales necesarias' });
+                return res.status(400).json({ error: 'Credentials required' });
             }
             const user = await Persona.findOne({ where: { email } });
             if (!user) {
-                return res.status(404).json({ error: 'Usuario no encontrado' });
+                return res.status(404).json({ error: 'User not found' });
             }
 
             const isPasswordValid = await bcrypt.compare(password, user.password);
             if (!isPasswordValid) {
-                return res.status(401).json({ error: 'Contraseña incorrecta' });
+                return res.status(401).json({ error: 'Incorrect password' });
             }
             const token = await MiddlewareCrearToken.CrearToken(user);
             const results = ApiResponse.createApiResponse('Successful login', { 
@@ -29,7 +29,7 @@ class PersonaService {
             return res.status(200).json(results);
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Error al iniciar sesión' });
+            return res.status(500).json({ error: 'Login error' });
         }
     }
 
@@ -74,7 +74,7 @@ class PersonaService {
 
             return people;
         } catch (error) {
-            throw new Error(`Error al obtener personas: ${error.message}`);
+            throw new Error(`Error getting people: ${error.message}`);
         }
     }
 
@@ -82,21 +82,17 @@ class PersonaService {
         try {
             const { nombre, email, password, n_documento_identidad, sede, id_rol, n_ficha, jornada, nombre_del_programa } = personData;
 
-            // Verificar si la persona ya existe
             const existingPerson = await Persona.findOne({ where: { email } });
             if (existingPerson) {
                 throw new Error('La persona ya está registrada');
             }
 
-            // Validar campos obligatorios
             if (!nombre || !email || !password || !n_documento_identidad || !sede || !id_rol) {
                 throw new Error('Todos los campos obligatorios deben estar completos');
             }
 
-            // Hashear contraseña
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            // Crear persona base
             const person = await Persona.create({
                 nombre,
                 email,
@@ -106,15 +102,13 @@ class PersonaService {
                 id_rol
             });
 
-            // Obtener el id de la person
             const id_persona = person.id;
 
-            // Insertar en tabla correspondiente según el id_rol
             if (id_rol === 3) {
                 if (!n_ficha || !jornada || !nombre_del_programa) {
                     throw new Error('Datos adicionales necesarios para usuarios: n_ficha, jornada, nombre_del_programa');
                 }
-                const usuario = await Usuario.create({
+                const user = await Usuario.create({
                     n_ficha,
                     jornada,
                     nombre_del_programa,
@@ -124,7 +118,7 @@ class PersonaService {
                 if (!n_ficha || !nombre_del_programa) {
                     throw new Error('Datos adicionales necesarios para instructores: n_ficha, nombre_del_programa');
                 }
-                const instructor = await AdministradorInstructor.create({
+                const owner = await AdministradorInstructor.create({
                     id_persona,
                     n_ficha,
                     nombre_del_programa
