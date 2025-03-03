@@ -5,24 +5,6 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
 
 ---
 
-## 2. Instalación
-
-### Requisitos Previos
-- **Node.js**: v16 o superior.
-- **MySQL**: Base de datos para almacenar la información.
-- **npm**: Gestor de paquetes de Node.js.
-- **mysql2**: Paquete para interactuar con MySQL.
-- **express**: Framework web para crear la API.
-- **jsonwebtoken**: Paquete para generar y verificar tokens de autenticación.
-- **bcrypt**: Paquete para encriptar contraseñas.
-- **cors**: Paquete para habilitar CORS en la API.
-- **body-parser**: Paquete para parsear el cuerpo de las solicitudes HTTP.
-- **sequelize**: Paquete para interactuar con la base de datos de MySQL.
-- **sequelize-cli**: Paquete para crear y migrar la base de datos de MySQL.
-- **dotenv**: Paquete para leer variables de entorno desde un archivo .env.
-- **morgan**: Paquete pR visualizar los estados y las peticiones de las apis creadas.
-- **nodemon**: Paquete para crear y gener ara un servidor de desarrollo.
-
 ### Instrucciones de Instalación
 1. Clona el repositorio:
    ```bash
@@ -32,29 +14,17 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
 
 2. Instala las dependencias:
    ```bash
-   npm install mysql2 express jwt bcrypt cors body-parser sequelize sequelize-cli dotenv morgan nodemon
+   npm install
    ```
    crecion de scrips en el package.json:
    ```json
       {
             "scripts": {
-                  "start": "node index.js",
-                  "dev": "nodemon index.js"
+                  "start": "node server.js",
+                  "dev": "nodemon server.js"
             }
       }
     ```
-
-3. Configura las variables de entorno:
-   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables de despliegue en cloud-clever:
-   ```env
-   DB_HOST=bsnvfs9rpxegu1v03g92-mysql.services.clever-cloud.com
-   DB_USER=u8bocyog95qdluk0
-   DB_PASSWORD=5CLBmtgCv00tHkPvEyJH
-   DB_NAME=bsnvfs9rpxegu1v03g92
-   DB_PORT=3306
-   JWT_SECRET=miSuperSecreto123
-   PORT=3000
-   ```
 
 4. Inicia el orm de sequelize para comenzar hacer los modelos y migraciones a nuestra base de datos con despliegue en Raiway:
    1. 
