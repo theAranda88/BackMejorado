@@ -7,7 +7,8 @@ module.exports = (sequelize) => {
       Farm.belongsToMany(models.User, {
         through: 'farm_user',
         foreignKey: 'id_farm',
-        otherKey: 'id_user'
+        otherKey: 'id_user',
+        as: 'users'
       });
     }
   }

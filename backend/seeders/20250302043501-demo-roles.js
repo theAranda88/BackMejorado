@@ -6,19 +6,19 @@ module.exports = {
     return await queryInterface.bulkInsert('roles', [
       {
         id: 1,
-        name: 'Admin',
+        name: 'admin',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: 2,
-        name: 'User',
+        name: 'owner',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: 3,
-        name: 'Guest',
+        name: 'user',
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -28,7 +28,7 @@ module.exports = {
   async down (queryInterface, Sequelize) {
     return await queryInterface.bulkDelete('roles', {
       name: {
-        [Sequelize.Op.in]: ['Admin', 'User', 'Guest']
+        [Sequelize.Op.in]: ['admin', 'owner', 'user']
       }
     }, {});
   }
