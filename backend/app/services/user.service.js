@@ -27,16 +27,16 @@ class UserService {
         }
     }
 
-    static async register(userData) {
+    async register(userData) {
         try {
-            const { name, email, password, dni, id_rol } = userData;
+            const { name, email, password, dni, id_rol, address } = userData;
 
             const existingUser = await User.findOne({ where: { email } });
             if (existingUser) {
                 throw new Error('El usuario ya está registrado');
             }
 
-            if (!name || !email || !password || !dni || !id_rol) {
+            if (!name || !email || !password || !dni || !id_rol || !address) {
                 throw new Error('Todos los campos obligatorios deben estar completos');
             }
 
@@ -47,10 +47,14 @@ class UserService {
                 email,
                 password: hashedPassword,
                 dni,
-                id_rol
+                id_rol,
+                address,
             });
 
-            return user;
+            const userDataResponse = user.toJSON();
+            delete userDataResponse.password;
+
+            return userDataResponse;
         } catch (error) {
             throw new Error(`Error al crear usuario: ${error.message}`);
         }

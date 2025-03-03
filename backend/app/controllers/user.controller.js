@@ -3,9 +3,17 @@ const ApiResponse = require('../utils/apiResponse')
 
 class UserController {
 
-    static async register(req, res) {
+    /**
+     *
+     * @param {UserService} userService
+     */
+    constructor(userService) {
+        this.userService = userService;
+    }
+
+    async register(req, res) {
         try {
-            const result = await UserService.register(req.body);
+            const result = await this.userService.register(req.body);
             const response = ApiResponse.createApiResponse('User registered successfully', result);
             return res.json(response);
         } catch (error) {
