@@ -1,12 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const userRoues = require('./app/routes/user.route');
-const authRoutes = require('./app/routes/auth.route');
 const BlackListService = require('./app/services/blacklist.service');
 const cors = require('cors');
-const app = express();
 const morgan = require('morgan');
+// Import the new ray module
+
+// Initialize express app
+const app = express();
+
+// Set up Ray with express
+
+app.get('/', (req, res) => {
+    res.send('Acuaterra Backend service running OK!');
+});
+/**
+ * Load Routes groups
+ */
+const userRoues = require('./app/routes/user.route');
+const authRoutes = require('./app/routes/auth.route');
+const farmRoutes = require('./app/routes/farm.route');
 
 app.use(morgan('tiny')); 
 app.use(express.json()); 
@@ -28,6 +41,7 @@ app.options('*', cors());
 //--------------Rutas con implementacion del orm sequelize-------------------------------
 app.use('/api/v2/users', userRoues);
 app.use('/api/v2/auth', authRoutes);
+app.use('/api/v2/farms', farmRoutes);
 
 const PORT = process.env.PORT || 3000;
 
