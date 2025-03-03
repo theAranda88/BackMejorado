@@ -19,17 +19,17 @@
   "test": {
     "username": "",
     "password": "",
-    "database": "",
-    "host": "",
-    "dialect": "",
-    "port": 0
+    "database": "railway",
+    "host": "shuttle.proxy.rlwy.net",
+    "dialect": "mysql",
+    "port": 26958
   },
   "production": {
     "username": "",
     "password": "",
-    "database": "",
-    "host": "",
-    "dialect": "",
-    "port": 0
+    "database": "railway",
+    "host": "shuttle.proxy.rlwy.net",
+    "dialect": "mysql",
+    "port": 26570
   }
 }
