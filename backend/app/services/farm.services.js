@@ -53,6 +53,29 @@ class FarmService {
             throw error;
         }
     }
+
+    async findById(id) {
+
+        try {
+            const farm = await Farm.findByPk(id, {
+                include: [{
+                    model: User,
+                    as: 'users',
+                    attributes: ['id', 'name', 'email', 'dni', 'id_rol'],
+                    through: {attributes: []}
+                }]
+            });
+
+            if (!farm) {
+                throw new Error(`Farm with id ${id} not found`);
+            }
+
+            return farm;
+        } catch (error) {
+            console.error(`Error fetching farm with id ${id}:`, error);
+            throw error;
+        }
+    }
 }
 
 module.exports = FarmService;
