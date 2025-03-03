@@ -164,6 +164,67 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\n    {\n     \"name\": \"Nuevo Nombre\",\n     \"address\": \"Nueva Dirección\",\n     \"latitude\": \"-1.345678\",\n     \"longitude\": \"2.345678\",\n     \"users\": [2] \n   }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server}}/api/v2/farms/1",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"farms",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/api/v2/farms/1",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"farms",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
