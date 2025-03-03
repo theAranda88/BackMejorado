@@ -3,7 +3,7 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class ModuleUser extends Model {
     static associate(models) {
-      // No additional associations needed as they are defined in the User and Module models
+      //
     }
   }
 

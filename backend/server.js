@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 const userRoues = require('./app/routes/user.route');
 const authRoutes = require('./app/routes/auth.route');
 const farmRoutes = require('./app/routes/farm.route');
+const moduleRoutes = require('./app/routes/module.route');
 
 app.use(morgan('tiny')); 
 app.use(express.json()); 
@@ -42,6 +43,7 @@ app.options('*', cors());
 app.use('/api/v2/users', userRoues);
 app.use('/api/v2/auth', authRoutes);
 app.use('/api/v2/farms', farmRoutes);
+app.use('/api/v2/modules', moduleRoutes);
 
 const PORT = process.env.PORT || 3000;
 

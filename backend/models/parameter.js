@@ -3,7 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Parameter extends Model {
     static associate(models) {
-      // Parameter belongs to a Sensor
       Parameter.belongsTo(models.Sensor, {
         foreignKey: 'id_sensor',
         as: 'sensor'
