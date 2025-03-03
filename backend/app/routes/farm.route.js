@@ -48,5 +48,12 @@ router.put(
     (req, res) => farmController.update(req, res)
 );
 
-module.exports = router;
+//Delete a farm by ID
+router.delete(
+    '/:id',
+    validateTokenMiddleware.validate.bind(validateTokenMiddleware),
+    validateRoleMiddleware.validate([Role.ADMIN]),
+    (req, res) => farmController.destroy(req, res)
+);
 
+module.exports = router;
