@@ -115,6 +115,23 @@ class FarmService {
             throw error;
         }
     }
+
+    async delete(id) {
+        try {
+            // Check if farm exists - this will throw an error if not found
+            await this.findById(id);
+            
+            // Delete the farm
+            await Farm.destroy({
+                where: { id }
+            });
+            
+            return { id };
+        } catch (error) {
+            console.error(`Error deleting farm with id ${id}:`, error);
+            throw error;
+        }
+    }
 }
 
 module.exports = FarmService;
