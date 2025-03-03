@@ -76,6 +76,45 @@ class FarmService {
             throw error;
         }
     }
+
+    async update(id, farmData) {
+        try {
+            const farm = await this.findById(id);
+            
+            const { name, address, latitude, longitude, users = [] } = farmData;
+            
+            await Farm.update({
+                name,
+                address,
+                latitude,
+                longitude
+            }, {
+                where: { id }
+            });
+            
+            if (users.length > 0) {
+                const foundUsers = await User.findAll({
+                    where: {
+                        id: users
+                    }
+                });
+                
+                await farm.setUsers(foundUsers);
+            }
+            
+            return await Farm.findByPk(id, {
+                include: [{
+                    model: User,
+                    as: 'users',
+                    attributes: ['id', 'name', 'email', 'dni', 'id_rol'],
+                    through: { attributes: [] }
+                }]
+            });
+        } catch (error) {
+            console.error(`Error updating farm with id ${id}:`, error);
+            throw error;
+        }
+    }
 }
 
 module.exports = FarmService;

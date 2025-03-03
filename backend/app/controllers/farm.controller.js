@@ -73,7 +73,42 @@ class FarmController {
             return res.status(500).json(response);
         }
     }
+
+    async update(req, res) {
+        try {
+            const { id } = req.params;
+            const { name, address, latitude, longitude, users = [] } = req.body;
+            
+            const updatedFarm = await this.farmService.update(id, {
+                name,
+                address,
+                latitude,
+                longitude,
+                users
+            });
+
+            const response = ApiResponse.createApiResponse(
+                "Farm updated successfully", 
+                updatedFarm
+            );
+            return res.json(response);
+        } catch (error) {
+            console.error("Error updating farm:", error);
+            const response = ApiResponse.createApiResponse(
+                "Failed to update farm", 
+                [], 
+                [{ msg: error.message }]
+            );
+            
+            if (error.message.includes("not found")) {
+                return res.status(404).json(response);
+            }
+            
+            return res.status(500).json(response);
+        }
+    }
 }
 
 module.exports = FarmController;
+
 

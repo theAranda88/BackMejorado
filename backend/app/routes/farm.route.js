@@ -5,7 +5,7 @@ const FarmController = require("../controllers/farm.controller");
 const ValidateTokenMiddleware = require("../middleware/validateToken.middleware");
 const BlackListService = require("../services/blacklist.service");
 const { validate } = require("../middleware/validate.middleware");
-const { validateFarmCreation } = require("../validators/farm.validator");
+const { validateFarmCreation, validateFarmUpdate } = require("../validators/farm.validator");
 const ValidateRoleMiddleware = require("../middleware/validateRole.middleware");
 const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService());
 const farmService = new FarmService();
@@ -37,6 +37,15 @@ router.get(
     validateTokenMiddleware.validate.bind(validateTokenMiddleware),
     validateRoleMiddleware.validate([Role.ADMIN]),
     (req, res) => farmController.show(req, res)
+);
+
+//Update a farm by ID
+router.put(
+    '/:id',
+    validateTokenMiddleware.validate.bind(validateTokenMiddleware),
+    validate(validateFarmUpdate),
+    validateRoleMiddleware.validate([Role.ADMIN]),
+    (req, res) => farmController.update(req, res)
 );
 
 module.exports = router;
