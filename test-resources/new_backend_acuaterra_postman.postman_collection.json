@@ -143,7 +143,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "\n    {\n     \"name\": \"Nombre de la granja\",\n     \"address\": \"Dirección de la granja\",\n     \"latitude\": \"12.345678\",\n     \"longitude\": \"-12.345678\",\n     \"users\": [2, 3] \n   }\n",
+									"raw": "\n    {\n     \"name\": \"Nombre de la granja\",\n     \"address\": \"Dirección de la granja\",\n     \"latitude\": \"12.345678\",\n     \"longitude\": \"-12.345678\",\n     \"users\": [2, 3, 3] \n   }\n",
 									"options": {
 										"raw": {
 											"language": "json"
