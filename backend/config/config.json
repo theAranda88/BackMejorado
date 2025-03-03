@@ -20,7 +20,7 @@
     "username": "",
     "password": "",
     "database": "railway",
-    "host": "shuttle.proxy.rlwy.net",
+    "host": "switchyard.proxy.rlwy.net",
     "dialect": "mysql",
     "port": 26958
   },
