@@ -31,5 +31,13 @@ router.get(
     (req, res) => farmController.index(req, res)
 );
 
+//Get a farm by ID
+router.get(
+    '/:id',
+    validateTokenMiddleware.validate.bind(validateTokenMiddleware),
+    validateRoleMiddleware.validate([Role.ADMIN]),
+    (req, res) => farmController.show(req, res)
+);
+
 module.exports = router;
 
