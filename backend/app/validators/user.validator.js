@@ -1,6 +1,5 @@
 const { body, validationResult } = require('express-validator');
 
-// Validation rules for user registration
 const validateUserRegistration = [
   body('name')
     .notEmpty().withMessage('Name is required')
@@ -12,12 +11,6 @@ const validateUserRegistration = [
     .isEmail().withMessage('Please provide a valid email address')
     .normalizeEmail(),
 
-/*  body('password')
-    .notEmpty().withMessage('Password is required')
-    .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
-    .matches(/\d/).withMessage('Password must contain at least one number')
-    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter'),
-*/
   body('dni')
     .notEmpty().withMessage('DNI is required')
     .isString().withMessage('DNI must be a string')
@@ -34,7 +27,6 @@ const validateUserRegistration = [
       .matches(/\d+/).withMessage('Address must contain at least one number')
       .matches(/\b\w+\b/).withMessage('Address must contain at least a street name'),
 ];
-
 
 module.exports = {
   validateUserRegistration,
