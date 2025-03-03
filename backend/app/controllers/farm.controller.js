@@ -34,7 +34,7 @@ class FarmController {
 
             const response = ApiResponse.createApiResponse(
                 "Farm created successfully", 
-                newFarm
+                [ newFarm ]
             );
             return res.status(201).json(response);
         } catch (error) {
@@ -55,7 +55,7 @@ class FarmController {
             
             const response = ApiResponse.createApiResponse(
                 "Farm retrieved successfully", 
-                farm
+                [ farm ]
             );
             return res.json(response);
         } catch (error) {
@@ -89,7 +89,7 @@ class FarmController {
 
             const response = ApiResponse.createApiResponse(
                 "Farm updated successfully", 
-                updatedFarm
+                [ updatedFarm ]
             );
             return res.json(response);
         } catch (error) {
@@ -115,7 +115,7 @@ class FarmController {
             
             const response = ApiResponse.createApiResponse(
                 "Farm deleted successfully", 
-                [ id ]
+                [ {deleted_id: id} ]
             );
             return res.json(response);
         } catch (error) {
