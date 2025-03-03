@@ -44,7 +44,7 @@ class FarmService {
                         as: 'users',
                         model: User,
                         attributes: ['id', 'name', 'email', 'dni', 'id_rol'],
-                        through: { attributes: [] }
+                        through: {attributes: []}
                     }
                 ]
             });
