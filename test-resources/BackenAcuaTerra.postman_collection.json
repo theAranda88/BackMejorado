@@ -1,0 +1,1809 @@
+{
+	"info": {
+		"_postman_id": "a8763817-c37e-4a71-b131-adf56d35943f",
+		"name": "BackenAcuaTerra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37390175"
+	},
+	"item": [
+		{
+			"name": "modulos",
+			"item": [
+				{
+					"name": "locales",
+					"item": [
+						{
+							"name": "POST Registro Modulo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"modulo11034340\",\r\n  \"ubicacion\": \"SenaAgro\",\r\n  \"especie_pescados\": \"tilapia\",\r\n  \"cantidad_pescados\": \"50\",\r\n  \"edad_pescados\": \"2 meses\",\r\n  \"dimensiones\": \"2x2mts\",\r\n  \"id_persona\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/modulos/registerModMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"registerModMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Modulo By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/modulos/moduloIdMVC/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"moduloIdMVC",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Modulos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/modulos/listarModuloMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"listarModuloMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT Editar Modulo",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"modulo00000\",\r\n  \"ubicacion\": \"SenaAgro\",\r\n  \"especie_pescados\": \"tilapia\",\r\n  \"cantidad_pescados\": \"50\",\r\n  \"edad_pescados\": \"2 meses\",\r\n  \"dimensiones\": \"2x2mts\",\r\n  \"id_persona\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/modulos/editarModuloMVC/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"editarModuloMVC",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE Eliminar Modulo",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/modulos/eliminarModuloMVC/6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"modulos",
+										"eliminarModuloMVC",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "desplegados",
+					"item": [
+						{
+							"name": "Registro Mod Desplegado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \r\n  \"nombre\": \"modPruebaDesplegado\",\r\n  \"ubicacion\": \"SenaAgro\",\r\n  \"especie_pescados\": \"tilapia\",\r\n  \"cantidad_pescados\": \"50\",\r\n  \"edad_pescados\": \"2 meses\",\r\n  \"dimensiones\": \"2x2mts\",\r\n  \"id_persona\": 1\r\n  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/modulos/registerModMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"modulos",
+										"registerModMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modulo By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/modulos/moduloIdMVC/5",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"modulos",
+										"moduloIdMVC",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modulos Desplegado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/modulos/listarModuloMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"modulos",
+										"listarModuloMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Editar Modulo Desplegado",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"modulo11111100000\",\r\n  \"ubicacion\": \"SenaAgro\",\r\n  \"especie_pescados\": \"tilapia\",\r\n  \"cantidad_pescados\": \"50\",\r\n  \"edad_pescados\": \"2 meses\",\r\n  \"dimensiones\": \"2x2mts\",\r\n  \"id_persona\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/modulos/editarModuloMVC/3",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"modulos",
+										"editarModuloMVC",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Modulo Desplegado",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/modulos/eliminarModuloMVC/2",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"modulos",
+										"eliminarModuloMVC",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "usuarios",
+			"item": [
+				{
+					"name": "locales",
+					"item": [
+						{
+							"name": "POST Register Usuarios",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Jessy\",\r\n    \"email\": \"cook@gmail.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"1964\",\r\n    \"sede\": \"ctpi\",\r\n    \"rol\": 3,\r\n    \"n_ficha\": \"2821683\",\r\n    \"jornada\": \"mañana\",\r\n    \"nombre_del_programa\": \"ADSO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/registerMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"registerMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"email\": \"Zule888@gmail1.com\",\r\n    \"password\": \"12345abcdef\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/loginMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"loginMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Usuarios",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjo3LCJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczOTI4MDQ0MSwiZXhwIjoxNzM5MjgwNjIxfQ.4s-4Rnzf33dFCql8surjlPL_fF6DEs2MBFbuu6JJziw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/users/listarusuariosMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"listarusuariosMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Register Instructor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Zulema\",\r\n    \"email\": \"z@gmail.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"0008\",\r\n    \"sede\": \"ctpi\",\r\n    \"rol\": 2,\r\n    \"n_ficha\": \"2821683\",\r\n    \"nombre_del_programa\": \"ADSO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/registerMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"registerMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Personas",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjo3LCJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczOTI4MDQ0MSwiZXhwIjoxNzM5MjgwNjIxfQ.4s-4Rnzf33dFCql8surjlPL_fF6DEs2MBFbuu6JJziw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/users/listarpersonasMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"listarpersonasMVC"
+									],
+									"query": [
+										{
+											"key": "authorization",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczNzUxNTgwNiwiZXhwIjoxNzM3NTE1OTg2fQ.fPzLyQFHsZyebF0bQ2IaSSWpoGxKq1jk9qQ8FLgOECs",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Instructores",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjo3LCJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczOTI4MDQ0MSwiZXhwIjoxNzM5MjgwNjIxfQ.4s-4Rnzf33dFCql8surjlPL_fF6DEs2MBFbuu6JJziw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/users/instructores?A",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"instructores"
+									],
+									"query": [
+										{
+											"key": "A",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Cerrar sesion",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjo3LCJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczOTI4MDQ0MSwiZXhwIjoxNzM5MjgwNjIxfQ.4s-4Rnzf33dFCql8surjlPL_fF6DEs2MBFbuu6JJziw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/api/users/cerrarSecionMVC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"cerrarSecionMVC"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "desplegados",
+					"item": [
+						{
+							"name": "GET Personas MVC Desplegado Render",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/listarpersonasMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"listarpersonasMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Register MVC Desplegado Usuarios",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Lionel\",\r\n    \"email\": \"leo@gmail.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"1010\",\r\n    \"sede\": \"ctpi\",\r\n    \"rol\": 3,\r\n    \"n_ficha\": \"2821683\",\r\n    \"jornada\": \"mañana\",\r\n    \"nombre_del_programa\": \"ADSO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/registerMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"registerMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Login MVC Desplegedo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"email\": \"Sary888@gmail1.com\",\r\n    \"password\": \"12345abcdef\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/loginMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"loginMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Usuarios MVC Desplegados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/listarusuariosMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"listarusuariosMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST Register Instructor MVC Desplegado",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Zule1\",\r\n    \"email\": \"Zule1888@gmail1.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"123456781\",\r\n    \"sede\": \"ctpi\",\r\n    \"rol\": 2,\r\n    \"id_persona\": 9,\r\n    \"n_ficha\": \"2821683\",\r\n    \"nombre_del_programa\": \"ADSO\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/registerMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"registerMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Instructores MVC Desplegados",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/listarinstructoresMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"listarinstructoresMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Pesona By Id MVC Desplegado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/personaidMVC/2",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"personaidMVC",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST CerrarSesion Desplegado",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9wZXJzb25hIjo3LCJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMjM0NTY3OCIsImlhdCI6MTczOTI4MDQ0MSwiZXhwIjoxNzM5MjgwNjIxfQ.4s-4Rnzf33dFCql8surjlPL_fF6DEs2MBFbuu6JJziw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/cerrarSesionMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"cerrarSesionMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST register Admin",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Diego\",\r\n    \"email\": \"die@gmail.com\",\r\n    \"password\": \"diego\",\r\n    \"n_documento_identidad\": \"00677\",\r\n    \"sede\": \"ctpi\",\r\n    \"rol\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/registerMVC",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"registerMVC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT editar usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"LeonelModificado\",\r\n    \"email\": \"leoModificado@gmail.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"1010101010101010101010\",\r\n    \"sede\": \"ctpiModificada\",\r\n    \"id_rol\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/43",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"43"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE eliminar usuarios",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/users/44",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"users",
+										"44"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "New Folder",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "bitacora",
+			"item": [
+				{
+					"name": "locales",
+					"item": [
+						{
+							"name": "GET bitacoras",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/bitacora/listarBitacora",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"bitacora",
+										"listarBitacora"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET by id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/bitacora/listarBitacora",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"bitacora",
+										"listarBitacora"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST crear bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_modulo\": 13,\r\n  \"fecha\": \"2025-11-03\",\r\n  \"descripcion\": \"Nueva descripcion prueba2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/bitacora/registrar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"bitacora",
+										"registrar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT editar bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_modulo\": 10,\r\n  \"fecha\": \"1003-10-15\",\r\n  \"descripcion\": \"Descripción MOdificada000000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/bitacora/editar/20",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"bitacora",
+										"editar",
+										"20"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/bitacora/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"bitacora",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "desplegados",
+					"item": [
+						{
+							"name": " PUT editar bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_modulo\": 10,\r\n  \"fecha\": \"1003-10-15\",\r\n  \"descripcion\": \"Descripción MOdificada prueba\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/bitacora/7",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"bitacora",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST crear bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id_modulo\": 10,\r\n  \"fecha\": \"2025-11-03\",\r\n  \"descripcion\": \"Nueva descripcion prueba2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/bitacora",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"bitacora"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET bitacoras",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/bitacora",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"bitacora"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE eliminar bitacora",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/bitacora/7",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"bitacora",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "umbrales",
+			"item": [
+				{
+					"name": "locales",
+					"item": [
+						{
+							"name": "GET umbrales",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/umbral/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"umbral",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET umbralById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/umbral/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"umbral",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST umbrales",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_sensor\": \"4\",\r\n    \"valor_min\": 7.12,\r\n    \"valor_max\": 8.09\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/umbral/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"umbral",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT umbrales",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_sensor\": 1,\r\n    \"valor_min\": \"6.50\",\r\n    \"valor_max\": \"8.50\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/umbral/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"umbral",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE umbral",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/umbral/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"umbral",
+										"11"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "deplegados",
+					"item": [
+						{
+							"name": "GET umbrales",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/umbral",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"umbral"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET umbralById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/umbral/2",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"umbral",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST crearUmbral",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_sensor\": \"2\",\r\n    \"valor_min\": 10.00,\r\n    \"valor_max\": 50.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/umbral",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"umbral"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT umbral",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_sensor\": \"4\",\r\n    \"valor_min\": 7.12,\r\n    \"valor_max\": 8.09\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/umbral/2",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"umbral",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/umbral/2",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"umbral",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "sensores",
+			"item": [
+				{
+					"name": "locales",
+					"item": [
+						{
+							"name": "GET sensores",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/sensor/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"sensor",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET sensorById",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/sensor/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"sensor",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST sensor",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Sensor de PH\",\r\n  \"tipo\": \"Analógico\",\r\n  \"id_hardware\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/sensor/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"sensor",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT sensor",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Sensor de PH mod\",\r\n  \"tipo\": \"Analógico mod\",\r\n  \"id_hardware\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/sensor/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"sensor",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete sensor",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/sensor/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"sensor",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "desplegaddos",
+					"item": [
+						{
+							"name": "GET sensores",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/sensor",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"sensor"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET sensorById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/sensor/1",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"sensor",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POSt sensor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Sensor nuevo\",\r\n  \"tipo\": \"Analógico\",\r\n  \"id_hardware\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/sensor/",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"sensor",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT sensot",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Sensor mod\",\r\n  \"tipo\": \"Analógic mod\",\r\n  \"id_hardware\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/sensor/11",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"sensor",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE sensor",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://backmejorado.onrender.com/api/sensor/11",
+									"protocol": "https",
+									"host": [
+										"backmejorado",
+										"onrender",
+										"com"
+									],
+									"path": [
+										"api",
+										"sensor",
+										"11"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "usuarioSequelize",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Dani\",\r\n    \"email\": \"dani@gmail.com\",\r\n    \"password\": \"Daniel8\",\r\n    \"n_documento_identidad\": \"78876545123691\",\r\n    \"sede\": \"ctpi\",\r\n    \"id_rol\": 3,\r\n    \"n_ficha\": \"2821683\",\r\n    \"jornada\": \"mañana\",\r\n    \"nombre_del_programa\": \"ADSO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v2/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"alv@gmail.com\",\r\n    \"password\": \"alvaro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v2/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v2",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Personas",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIxMDYxNzc3NjY2IiwiaWF0IjoxNzQwNjkwMjYyLCJleHAiOjE3NDA3MDgyNjJ9.fIp98jUY67i0WdXXWoqDwgqpNpV3S498bHXH5taEvhY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/v2/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v2",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIwMDE5NjQiLCJpYXQiOjE3NDA0OTgyODAsImV4cCI6MTc0MDUxNjI4MH0.s3YZAF3YvEHylPFUYtPHOO29IG3nMknKy0H0KuwxsMU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"JessyPickman\",\r\n    \"email\": \"cookosimanias@gmail.com\",\r\n    \"password\": \"12345abcdef\",\r\n    \"n_documento_identidad\": \"0000001964\",\r\n    \"sede\": \"ctpiModif\",\r\n    \"rol\": 3,\r\n    \"n_ficha\": \"2821683Modf\",\r\n    \"jornada\": \"mañanaMod\",\r\n    \"nombre_del_programa\": \"ADSOMod\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/person/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuX2RvY3VtZW50b19pZGVudGlkYWQiOiIwMDE5NjQiLCJpYXQiOjE3NDA0OTgyODAsImV4cCI6MTc0MDUxNjI4MH0.s3YZAF3YvEHylPFUYtPHOO29IG3nMknKy0H0KuwxsMU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/person/16",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"person",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
