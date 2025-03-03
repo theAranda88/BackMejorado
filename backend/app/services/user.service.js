@@ -29,18 +29,19 @@ class UserService {
 
     async register(userData) {
         try {
-            const { name, email, password, dni, id_rol, address } = userData;
+            const { name, email, dni, id_rol, address } = userData;
 
             const existingUser = await User.findOne({ where: { email } });
             if (existingUser) {
                 throw new Error('El usuario ya está registrado');
             }
 
-            if (!name || !email || !password || !dni || !id_rol || !address) {
+            if (!name || !email || !dni || !id_rol || !address) {
                 throw new Error('Todos los campos obligatorios deben estar completos');
             }
 
-            const hashedPassword = await bcrypt.hash(password, 10);
+            const tempPassword = Math.random().toString(36).slice(-8); // Genera una contraseña aleatoria
+            const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
             const user = await User.create({
                 name,
@@ -51,10 +52,9 @@ class UserService {
                 address,
             });
 
-            const userDataResponse = user.toJSON();
-            delete userDataResponse.password;
+            const { password, ...userWithoutPassword } = user.dataValues;
+            return userWithoutPassword;
 
-            return userDataResponse;
         } catch (error) {
             throw new Error(`Error al crear usuario: ${error.message}`);
         }
