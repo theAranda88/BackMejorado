@@ -132,6 +132,32 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{server}}/api/v2/farms/1",
+									"host": [
+										"{{server}}"
+									],
+									"path": [
+										"api",
+										"v2",
+										"farms",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}

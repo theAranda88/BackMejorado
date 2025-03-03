@@ -107,8 +107,32 @@ class FarmController {
             return res.status(500).json(response);
         }
     }
+
+    async destroy(req, res) {
+        try {
+            const { id } = req.params;
+            await this.farmService.delete(id);
+            
+            const response = ApiResponse.createApiResponse(
+                "Farm deleted successfully", 
+                [ id ]
+            );
+            return res.json(response);
+        } catch (error) {
+            console.error("Error deleting farm:", error);
+            const response = ApiResponse.createApiResponse(
+                "Failed to delete farm", 
+                [], 
+                [{ msg: error.message }]
+            );
+            
+            if (error.message.includes("not found")) {
+                return res.status(404).json(response);
+            }
+            
+            return res.status(500).json(response);
+        }
+    }
 }
 
 module.exports = FarmController;
-
-
