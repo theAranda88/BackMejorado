@@ -1,0 +1,28 @@
+services:
+    backend:
+        build: ./backend
+        container_name: backend-acuaterra
+        ports:
+            - "9000:3000"
+        volumes:
+            - ./backend/:/app
+            - /app/node_modules
+        depends_on:
+            - database
+    database:
+        image: mysql
+        container_name: database-acuaterra
+        ports:
+            - 33066:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_USER: acuaterra
+            MYSQL_PASSWORD: acuaterra
+            MYSQL_DATABASE: acuaterra_db
+        volumes:
+            -   database-acuaterra:/var/lib/mysql
+volumes:
+    database-acuaterra:
+        driver: local
+    database-acuaterra-orm:
+        driver: local

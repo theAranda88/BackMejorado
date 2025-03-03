@@ -5,161 +5,21 @@ Este proyecto es un sistema backend diseñado para gestionar personas, módulos,
 
 ---
 
-## 2. Instalación
-
-### Requisitos Previos
-- **Node.js**: v16 o superior.
-- **MySQL**: Base de datos para almacenar la información.
-- **npm**: Gestor de paquetes de Node.js.
-- **mysql2**: Paquete para interactuar con MySQL.
-- **express**: Framework web para crear la API.
-- **jsonwebtoken**: Paquete para generar y verificar tokens de autenticación.
-- **bcrypt**: Paquete para encriptar contraseñas.
-- **cors**: Paquete para habilitar CORS en la API.
-- **body-parser**: Paquete para parsear el cuerpo de las solicitudes HTTP.
-- **sequelize**: Paquete para interactuar con la base de datos de MySQL.
-- **sequelize-cli**: Paquete para crear y migrar la base de datos de MySQL.
-- **dotenv**: Paquete para leer variables de entorno desde un archivo .env.
-- **morgan**: Paquete pR visualizar los estados y las peticiones de las apis creadas.
-- **nodemon**: Paquete para crear y gener ara un servidor de desarrollo.
-
 ### Instrucciones de Instalación
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/theAranda88/BackMejorado.git
    cd BackMejorado
    ```
+   
+## 2. Correr ambiente de desarrollo:
 
-2. Instala las dependencias:
-   ```bash
-   npm install mysql2 express jwt bcrypt cors body-parser sequelize sequelize-cli dotenv morgan nodemon
-   ```
-   crecion de scrips en el package.json:
-   ```json
-      {
-            "scripts": {
-                  "start": "node index.js",
-                  "dev": "nodemon index.js"
-            }
-      }
-    ```
-
-3. Configura las variables de entorno:
-   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables de despliegue en cloud-clever:
-   ```env
-   DB_HOST=bsnvfs9rpxegu1v03g92-mysql.services.clever-cloud.com
-   DB_USER=u8bocyog95qdluk0
-   DB_PASSWORD=5CLBmtgCv00tHkPvEyJH
-   DB_NAME=bsnvfs9rpxegu1v03g92
-   DB_PORT=3306
-   JWT_SECRET=miSuperSecreto123
-   PORT=3000
-   ```
-
-4. Inicia el orm de sequelize para comenzar hacer los modelos y migraciones a nuestra base de datos con despliegue en Raiway:
-   1. 
-    **`Inicilizando sequelize:`**
-   ```
-    npx sequelize-cli init
-   ```
-   2. 
-    **`Configurar archivo (config/config.json)`**
-   ```json
-      {
-        "development": {
-            "username": "root",
-            "password": "tVXHddJLzsNkrXwzYNSqntbwyQPgsIct",
-            "database": "railway",
-            "host": "nozomi.proxy.rlwy.net",
-            "dialect": "mysql",
-            "port": 35216 
-          }
-      }
-    ```
-    3. 
-    **`Generar modelos:`**
-    
-      - **Rol**: npx sequelize-cli model:generate --name Rol --attributes nombre:string
-      - **Persona**: npx sequelize-cli model:generate --name Persona --attributes nombre:string,email:string,password:string,     n_documento_identidad:string,sede:string,id_rol:integer
-      - **AdministradorInstuctor**: npx sequelize-cli model:generate --name AdministradorInstructor --attributes n_ficha:string,nombre_del_programa:string,id_persona:integer
-      - **Usuario**: npx sequelize-cli model:generate --name Usuario --attributes n_ficha:string,jornada:string,nombre_del_programa:string,id_persona:integer
-      - **Modulo**: npx sequelize-cli model:generate --name Modulo --attributes nombre:string,ubicacion:string,especie_pescados:string,cantidad_pescados:string,edad_pescados:string,dimensiones:string,id_persona:integer
-      - **Hardware**: npx sequelize-cli model:generate --name Hardware --attributes nombre:string,descripcion:text,id_modulo:integer
-      - **Sensor**: npx sequelize-cli model:generate --name Sensor --attributes nombre:string,tipo:string,id_hardware:integer
-      - **Umbral**: npx sequelize-cli model:generate --name Umbral --attributes valor_min:decimal,valor_max:decimal,id_sensor:integer
-      - **Bitacora**: npx sequelize-cli model:generate --name Bitacora --attributes fecha:dateonly,descripcion:text,id_modulo:integer
-      - **Notificacion**: npx sequelize-cli model:generate --name Notificacion --attributes tipo:string,mensaje:text,fecha_hora:date,id_modulo:integer
-      - **Reporte**: npx sequelize-cli model:generate --name Reporte --attributes fecha_inicio:dateonly,fecha_fin:dateonly,datos:json,id_modulo:integer
-      - **Paramtro**: npx sequelize-cli model:generate --name Parametro --attributes valor:decimal,fecha_hora:date,id_sensor:integer
-      - **modulo-usuario**: npx sequelize-cli migration:generate --name create-modulo-usuario-junction
-
-     4. 
-      **`Agregamos las relaciones entre modelos:`**
-    
-      **Rol - Persona**
-      Rol.hasMany(Persona, { foreignKey: 'id_rol' });
-      Persona.belongsTo(Rol, { foreignKey: 'id_rol' });
-
-      **Persona - AdministradorInstructor**
-      Persona.hasOne(AdministradorInstructor, { foreignKey: 'id_persona' });
-      AdministradorInstructor.belongsTo(Persona, { foreignKey: 'id_persona' });
-
-      **Persona - Usuario**
-      Persona.hasOne(Usuario, { foreignKey: 'id_persona' });
-      Usuario.belongsTo(Persona, { foreignKey: 'id_persona' });
-
-      **Modulo - Hardware**
-      Modulo.hasMany(Hardware, { foreignKey: 'id_modulo' });
-      Hardware.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-      **Hardware - Sensor**
-      Hardware.hasMany(Sensor, { foreignKey: 'id_hardware' });
-      Sensor.belongsTo(Hardware, { foreignKey: 'id_hardware' });
-
-      **Sensor - Umbral**
-      Sensor.hasOne(Umbral, { foreignKey: 'id_sensor' });
-      Umbral.belongsTo(Sensor, { foreignKey: 'id_sensor' });
-
-      **Sensor - Parametro**
-      Sensor.hasMany(Parametro, { foreignKey: 'id_sensor' });
-      Parametro.belongsTo(Sensor, { foreignKey: 'id_sensor' });
-
-      **Modulo - Bitacora**
-      Modulo.hasMany(Bitacora, { foreignKey: 'id_modulo' });
-      Bitacora.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-      **Modulo - Notificacion**
-      Modulo.hasMany(Notificacion, { foreignKey: 'id_modulo' });
-      Notificacion.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-      **Modulo - Reporte**
-      Modulo.hasMany(Reporte, { foreignKey: 'id_modulo' });
-      Reporte.belongsTo(Modulo, { foreignKey: 'id_modulo' });
-
-      **Modulo - Usuario (Many-to-Many)**
-      Persona.belongsToMany(Modulo, { through: 'ModuloUsuario', foreignKey: 'id_persona' });
-      Modulo.belongsToMany(Persona, { through: 'ModuloUsuario', foreignKey: 'id_modulo' });
-
-    5. 
-     **`Ejecutamos la migracion:`**
-    ```
-     npx sequelize-cli db:migrate
-    ```
-
-5. **`Inicia el servidor:`**
-   ```bash
-   npm run dev
-   ```
-
----
-
-## 3. Uso
-
-### Iniciar el Servidor
-Para iniciar el servidor, ejecuta:
-```bash
-npm run dev
-```
+ ````bash
+  cd scripts
+  chmod 700 start-dev.sh
+  ./start-dev.sh
+ 
+ ````
 
 El servidor estará disponible en `http://localhost:3000`.
 
