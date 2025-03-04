@@ -7,9 +7,11 @@ const UserController = require('../controllers/user.controller');
 const ValidateTokenMiddleware = require('../middleware/validateToken.middleware');
 const BlackListService = require('../services/blacklist.service');
 const UserService = require("../services/user.service");
+const Mailer = require('../utils/Mailer');
 
 const validateTokenMiddleware = new ValidateTokenMiddleware(new BlackListService());
-const userService = new UserService();
+const mailer = new Mailer(process.env.RESEND_API_KEY);
+const userService = new UserService(mailer);
 const userController = new UserController(userService);
 
 router.post('/',

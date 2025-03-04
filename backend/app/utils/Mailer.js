@@ -19,7 +19,7 @@ class Mailer {
                 from,
                 to,
                 subject,
-                html: content,
+                html: content
             });
 
             return {

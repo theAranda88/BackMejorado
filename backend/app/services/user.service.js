@@ -1,11 +1,12 @@
 const { User, Rol } = require('../../models');
 const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
-const Mailer = require('../utils/Mailer')
+const ejs = require('ejs');
+const path = require('path');
 
 class UserService {
-    constructor() {
-        this.mailer = new Mailer(process.env.RESEND_API_KEY);
+    constructor(mailer) {
+        this.mailer = mailer;
     }
 
     static async getAllUsers() {
@@ -40,10 +41,6 @@ class UserService {
                 throw new Error('El usuario ya está registrado');
             }
 
-            if (!name || !email || !dni || !id_rol || !address) {
-                throw new Error('Todos los campos obligatorios deben estar completos');
-            }
-
             const tempPassword = Math.random().toString(36).slice(-8); // Genera una contraseña aleatoria
             const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
@@ -56,19 +53,14 @@ class UserService {
                 address,
             });
 
-            const resetPasswordUrl = `${process.env.FRONTEND_URL}/reset-password?userId=${user.id}`;
+            const resetPasswordUrl = process.env.RESET_PASSWORD_FRONTEND_URL;
+
             const subject = 'Registro Exitoso - Credenciales de Acceso - Configura tu contraseña';
-            const htmlContent = `
-                <h2>¡Bienvenido, ${name}!</h2>
-                <p>Tu cuenta ha sido creada exitosamente. Aquí están tus credenciales:</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Contraseña temporal:</strong> ${tempPassword}</p>
-                <p>Por favor, cambia tu contraseña después de iniciar sesión.</p>
-                <p>Puedes cambiar tu contraseña haciendo clic en el siguiente enlace:</p>
-                <p><a href="${resetPasswordUrl}" style="background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Actualizar Contraseña</a></p>
-                <p>Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
-                <p>${resetPasswordUrl}</p>
-            `;
+
+            const htmlContent = await ejs.renderFile(
+                path.join(__dirname, '../views/emails/new_user.ejs'),
+                { name, email, tempPassword, resetPasswordUrl }
+            );
 
             await this.mailer.sendEmail(email, subject, htmlContent, process.env.RESEND_FROM_EMAIL);
 
