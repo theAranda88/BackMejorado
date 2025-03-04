@@ -21,17 +21,23 @@
 										"key": "Authorization",
 										"value": "{{token}}",
 										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{server}}/api/v2/farms",
+									"raw": "{{server}}/api/v2/modules/1",
 									"host": [
 										"{{server}}"
 									],
 									"path": [
 										"api",
 										"v2",
-										"farms"
+										"modules",
+										"1"
 									]
 								}
 							},

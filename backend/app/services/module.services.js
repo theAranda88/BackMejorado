@@ -1,7 +1,7 @@
 const { Module, User, Farm } = require('../../models');
 
 class ModuleService {
-    async findAll() {
+    async findAll(farmId) {
         try {
             return await Module.findAll({
                 include: [
@@ -15,7 +15,10 @@ class ModuleService {
                         as: 'farm',
                         attributes: ['id', 'name', 'address', 'latitude', 'longitude']
                     }
-                ]
+                ],
+                where: {
+                    id_farm: farmId
+                }
             });
         } catch (error) {
             console.error("Error fetching modules:", error);

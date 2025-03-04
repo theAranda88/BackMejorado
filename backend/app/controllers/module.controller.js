@@ -11,8 +11,9 @@ class ModuleController {
     }
 
     async index(req, res) {
+        const farmId = req.params.farm_id;
         try {
-            const result = await this.moduleService.findAll();
+            const result = await this.moduleService.findAll(farmId);
             const response = ApiResponse.createApiResponse("All modules retrieved successfully", result)
             return res.json(response);
         } catch (error) {
