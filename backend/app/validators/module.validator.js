@@ -1,4 +1,4 @@
-const { param } = require('express-validator');
+const { param, query } = require('express-validator');
 const { Module } = require('../../models');
 
 const validateListModules = [
