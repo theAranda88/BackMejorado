@@ -14,11 +14,11 @@ const validateFarmCreation = [
         .isLength({ min: 5, max: 200 }).withMessage('Address must be between 5 and 200 characters'),
 
     body('latitude')
-        .optional()
+        .notEmpty()
         .isFloat({ min: -90, max: 90 }).withMessage('Latitude must be a valid number between -90 and 90'),
 
     body('longitude')
-        .optional()
+        .notEmpty()
         .isFloat({ min: -180, max: 180 }).withMessage('Longitude must be a valid number between -180 and 180'),
 
     body('users')
