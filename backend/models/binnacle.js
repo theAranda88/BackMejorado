@@ -3,7 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Binnacle extends Model {
     static associate(models) {
-      // A binnacle belongs to a module
       Binnacle.belongsTo(models.Module, {
         foreignKey: 'id_module',
         onDelete: 'CASCADE',

@@ -3,7 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Farm extends Model {
     static associate(models) {
-      // Many-to-many relationship with User through farm_user
       Farm.belongsToMany(models.User, {
         through: 'farm_user',
         foreignKey: 'id_farm',

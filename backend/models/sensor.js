@@ -3,19 +3,16 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Sensor extends Model {
     static associate(models) {
-      // Sensor belongs to Hardware
       Sensor.belongsTo(models.Hardware, {
         foreignKey: 'id_hardware',
         as: 'hardware'
       });
 
-      // Sensor has one threshold
       Sensor.hasOne(models.Threshold, {
         foreignKey: 'id_sensor',
         as: 'threshold'
       });
 
-      // Sensor has many parameters
       Sensor.hasMany(models.Parameter, {
         foreignKey: 'id_sensor',
         as: 'parameters'

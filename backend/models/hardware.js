@@ -3,13 +3,11 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Hardware extends Model {
     static associate(models) {
-      // Hardware belongs to a Module
       Hardware.belongsTo(models.Module, {
         foreignKey: 'id_module',
         as: 'module'
       });
       
-      // Hardware has many Sensors
       Hardware.hasMany(models.Sensor, {
         foreignKey: 'id_hardware',
         as: 'sensors'

@@ -3,7 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Threshold extends Model {
     static associate(models) {
-      // A threshold belongs to a sensor
       Threshold.belongsTo(models.Sensor, {
         foreignKey: 'id_sensor',
         as: 'sensor'

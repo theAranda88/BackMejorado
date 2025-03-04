@@ -3,7 +3,6 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class Notification extends Model {
     static associate(models) {
-      // Define association with Module model (belongs to a module)
       Notification.belongsTo(models.Module, {
         foreignKey: 'id_module',
         onDelete: 'CASCADE'
