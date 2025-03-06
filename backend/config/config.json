@@ -1,0 +1,35 @@
+
+{
+  "development": {
+    "username": "acuaterra",
+    "password": "acuaterra",
+    "database": "acuaterra_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "port": 33066
+  },
+  "docker": {
+    "username": "acuaterra",
+    "password": "acuaterra",
+    "database": "acuaterra_db",
+    "host": "database-acuaterra",
+    "dialect": "mysql",
+    "port": 3306
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "",
+    "port": 0
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "",
+    "port": 0
+  }
+}
