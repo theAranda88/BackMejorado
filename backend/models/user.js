@@ -58,6 +58,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
+    address: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
     id_rol: {
       type: DataTypes.INTEGER,
       allowNull: false,

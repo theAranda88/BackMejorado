@@ -1,8 +1,13 @@
 const { User, Rol } = require('../../models');
 const { Sequelize } = require('sequelize');
 const bcrypt = require('bcrypt');
+const ejs = require('ejs');
+const path = require('path');
 
 class UserService {
+    constructor(mailer) {
+        this.mailer = mailer;
+    }
 
     static async getAllUsers() {
         try {
@@ -27,30 +32,41 @@ class UserService {
         }
     }
 
-    static async register(userData) {
+    async register(userData) {
         try {
-            const { name, email, password, dni, id_rol } = userData;
+            const { name, email, dni, id_rol, address } = userData;
 
             const existingUser = await User.findOne({ where: { email } });
             if (existingUser) {
                 throw new Error('El usuario ya está registrado');
             }
 
-            if (!name || !email || !password || !dni || !id_rol) {
-                throw new Error('Todos los campos obligatorios deben estar completos');
-            }
-
-            const hashedPassword = await bcrypt.hash(password, 10);
+            const tempPassword = Math.random().toString(36).slice(-8); // Genera una contraseña aleatoria
+            const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
             const user = await User.create({
                 name,
                 email,
                 password: hashedPassword,
                 dni,
-                id_rol
+                id_rol,
+                address,
             });
 
-            return user;
+            const resetPasswordUrl = process.env.RESET_PASSWORD_FRONTEND_URL;
+
+            const subject = 'Registro Exitoso - Credenciales de Acceso - Configura tu contraseña';
+
+            const htmlContent = await ejs.renderFile(
+                path.join(__dirname, '../views/emails/new_user.ejs'),
+                { name, email, tempPassword, resetPasswordUrl }
+            );
+
+            await this.mailer.sendEmail(email, subject, htmlContent, process.env.RESEND_FROM_EMAIL);
+
+            const { password, ...userWithoutPassword } = user.dataValues;
+            return userWithoutPassword;
+
         } catch (error) {
             throw new Error(`Error al crear usuario: ${error.message}`);
         }
